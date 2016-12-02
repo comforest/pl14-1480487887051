@@ -11,7 +11,10 @@
     $userName = "8108ea35-b6da-41f9-b866-9256512e3b5c";
     $userPwd = "3d1TCQCzeNke";
 
-    $data = array("input" => array("text"=>"Ashe is the most popular champion?"));
+    $data = array(
+        "conversion_target" => "file=sample.pdf",
+        "answer_units" => $url
+    );
 
     $json_data = json_encode($data);
     $ch = curl_init();

@@ -27,7 +27,7 @@ body {
 	margin-right: 200px;
 	height: 460px;
 	overflow-y: scroll;
-	background-image: url('lolwallpaper.jpg');
+	background-image: url('images/lolwallpaper.jpg');
 	background-size: auto 460px;
 }
 #container #content #textinput {
@@ -40,7 +40,7 @@ body {
 	width: 200px;
 	height: 500px;
 	float: right;
-	background-image: url('teemo.jpg');
+	background-image: url('images/teemo.jpg');
 	background-repeat: no-repeat;
 	background-size: 200px 500px;
 }

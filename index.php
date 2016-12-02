@@ -6,16 +6,20 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1><a href="hj/mainpage.php">mainpage</a></h1>
-<h1><a href="hj/doc_con.php">document conversion</a></h1>
+<h1><a href="mainpage.php">mainpage</a></h1>
+<h1><a href="doc_con.php">document conversion</a></h1>
 <?php 
 
     $workspace_id = 'cc934d4e-0130-403c-b6e9-df4b78e43c89';
     $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
     $userPwd = "05MXPpfi8Gs2";
 
-    $data = array("input" => array("text"=>"Ashe is the most popular champion?"));
-    $data_string = json_encode($data);
+    $config = array(
+        "input" => array(
+            "text"=>"Ashe is the most popular champion?"
+            )
+    );
+    $data_string = json_encode($config);
 
     // create curl resource 
     $ch = curl_init(); 
