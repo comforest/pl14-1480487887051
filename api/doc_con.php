@@ -11,30 +11,21 @@
     $userName = "8108ea35-b6da-41f9-b866-9256512e3b5c";
     $userPwd = "3d1TCQCzeNke";
 
-    $data = array(
-        "config" => json_encode(array(
-            "conversion_target" => "answer_units"
-        )),
-        "file" => "@sample.pdf",
-        "version" => "2015-12-15"
-    );
+    $data['config'] = "{\"conversion_target\":\"answer_units\"}";
+    $data['file'] = "@". dirname(__FILE__). "\sample.pdf";
 
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Content-Type: application/json',
-        'Content-Length: ' . strlen($data))
-    );
-    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_POST, 1);
-
-    curl_setopt($ch, CURLOPT_USERPWD, "$userName:$userPwd");
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_USERPWD, "$userName:$userPwd");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_URL, $url);
 
     $output = curl_exec($ch);
     echo $output. '<br>';
+    echo curl_error($ch);
 
     curl_close($ch);
 ?>

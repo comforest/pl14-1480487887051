@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-=======
 <html>
 <head>
 	<title>PHP Starter Application</title>
@@ -8,8 +6,8 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1><a href="mainpage.php">mainpage</a></h1>
-<h1><a href="doc_con.php">document conversion</a></h1>
+<h1><a href="main/index.php">mainpage</a></h1>
+<h1><a href="api/doc_con.php">document conversion</a></h1>
 <?php
     $workspace_id = 'a5f9a706-0017-4aae-9ae3-f5c7e1f7d9c0';
     $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
@@ -39,8 +37,7 @@
         'Content-Type: application/json',
         'Content-Length: ' . strlen($data_string))
     );
-       
->>>>>>> 30920066738c8ea2ff907dd222cec1d926bd052b
+?>
 
 <html>
    <head>
