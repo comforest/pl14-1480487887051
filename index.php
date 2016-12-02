@@ -50,6 +50,7 @@
 
     curl_close($ch);      
 
+    echo curl_errno($ch);
 
 ?>
 </body>
