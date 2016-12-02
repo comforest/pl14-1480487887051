@@ -6,8 +6,6 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1><a href="hj/mainpage.php">mainpage</a></h1>
-<h1><a href="hj/doc_con.php">document conversion</a></h1>
 <?php 
 
     $workspace_id = 'a5f9a706-0017-4aae-9ae3-f5c7e1f7d9c0';
@@ -43,21 +41,17 @@
 
     curl_close($ch);
 
+    $result = array();
     foreach ($arr["intents"] as $k => $v) {
-    	echo $v["intent"];
-    }
+    	$arr2[] = $v["intent"]
+;    }
 
+    $result["intent"] = $arr2;
+    $arr2 = [];
     foreach ($arr["entities"] as $k => $v) {
-    	switch ($v["entity"]) {
-    		case 'Champion':
-    			
-    			break;
-    		case 'Amount':
-    			
-    			break;
-    	}
+        $result[$v["entity"]][] = $v["value"];
     }
-
+    print_r($result);
 
 ?>
 </body>
