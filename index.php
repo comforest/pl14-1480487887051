@@ -6,13 +6,14 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<h1>a</h1>
 <?php 
 
-    $workspace_id = 'cc934d4e-0130-403c-b6e9-df4b78e43c89';
-    $userName = "91184ae8-7f0f-4852-bc04-da75712108cb";
-    $userPwd = "UYmCRYQLd2EG";
+    $workspace_id = 'a5f9a706-0017-4aae-9ae3-f5c7e1f7d9c0';
+    $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
+    $userPwd = "05MXPpfi8Gs2";
 
-    $data = array("input" => array("text"=>"Ashe is the most popular champion?"));   
+    $data = array("input" => array("text"=>"Is Ashe good popular champion?"));   
     $data_string = json_encode($data);
 
     // create curl resource 
@@ -37,8 +38,14 @@
     // $output contains the output string 
     $out = curl_exec($ch);
     
-    echo $out.'<Br><br>';
-    $arr = json_decode($out);
+    $arr = json_decode($out,true);
+
+    print_r($arr);
+
+    echo "<br>";
+    print_r($arr["intents"]);
+    echo "<br>";
+    print_r($arr["entities"]);
 
     curl_close($ch);      
 
