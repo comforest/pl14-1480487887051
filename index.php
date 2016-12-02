@@ -10,7 +10,7 @@
 <h1><a href="doc_con.php">document conversion</a></h1>
 <?php 
 
-    $workspace_id = 'cc934d4e-0130-403c-b6e9-df4b78e43c89';
+    $workspace_id = 'a5f9a706-0017-4aae-9ae3-f5c7e1f7d9c0';
     $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
     $userPwd = "05MXPpfi8Gs2";
 
@@ -43,8 +43,14 @@
     // $output contains the output string 
     $out = curl_exec($ch);
     
-    echo $out.'<Br><br>';
-    $arr = json_decode($out);
+    $arr = json_decode($out,true);
+
+    print_r($arr);
+
+    echo "<br>";
+    print_r($arr["intents"]);
+    echo "<br>";
+    print_r($arr["entities"]);
 
     curl_close($ch);      
 
