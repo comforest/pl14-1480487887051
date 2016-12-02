@@ -8,18 +8,17 @@
 <body>
 <h1><a href="mainpage.php">mainpage</a></h1>
 <h1><a href="doc_con.php">document conversion</a></h1>
-<?php 
-
+<?php
     $workspace_id = 'a5f9a706-0017-4aae-9ae3-f5c7e1f7d9c0';
     $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
     $userPwd = "05MXPpfi8Gs2";
 
-    $config = array(
+    $data = array(
         "input" => array(
             "text"=>"Ashe is the most popular champion?"
-            )
+        )
     );
-    $data_string = json_encode($config);
+    $data_string = json_encode($data);
 
     // create curl resource 
     $ch = curl_init(); 

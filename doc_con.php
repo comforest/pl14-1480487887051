@@ -12,20 +12,22 @@
     $userPwd = "3d1TCQCzeNke";
 
     $data = array(
-        "conversion_target" => "file=sample.pdf",
-        "answer_units" => $url
+        "config" => json_encode(array(
+            "conversion_target" => "answer_units"
+        )),
+        "file" => "@sample.pdf",
+        "version" => "2015-12-15"
     );
 
-    $json_data = json_encode($data);
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
-        'Content-Length: ' . strlen($json_data))
+        'Content-Length: ' . strlen($data))
     );
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     curl_setopt($ch, CURLOPT_POST, 1);
 
     curl_setopt($ch, CURLOPT_USERPWD, "$userName:$userPwd");
