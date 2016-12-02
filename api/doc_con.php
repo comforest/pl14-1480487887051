@@ -12,8 +12,7 @@
     $userPwd = "3d1TCQCzeNke";
 
     $data['config'] = "{\"conversion_target\":\"answer_units\"}";
-    $data['file'] = "@". dirname(__FILE__). "/sample.pdf";
-
+    $data['file'] = "@". dirname(__FILE__). "/html/patch_6.23.html";
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
@@ -24,10 +23,15 @@
     curl_setopt($ch, CURLOPT_URL, $url);
 
     $output = curl_exec($ch);
-    echo $output. '<br>';
-    echo curl_error($ch);
+    curl_error($ch);
+
+    $arr = json_decode($output, true);
 
     curl_close($ch);
+
+    foreach ($arr["answer_units"] as $key => $value) {
+        echo $value["title"]. '<br>';
+    }
 ?>
 </body>
 </html>
