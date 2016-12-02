@@ -10,10 +10,10 @@
 <?php 
 
     $workspace_id = 'cc934d4e-0130-403c-b6e9-df4b78e43c89';
-    $userName = "91184ae8-7f0f-4852-bc04-da75712108cb";
-    $userPwd = "UYmCRYQLd2EG";
+    $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
+    $userPwd = "05MXPpfi8Gs2";
 
-    $data = array("input" => array("text"=>"Ashe is the most popular champion?"));   
+    $data = array("input" => array("text"=>"Ashe is the most popular champion?"));
     $data_string = json_encode($data);
 
     // create curl resource 
