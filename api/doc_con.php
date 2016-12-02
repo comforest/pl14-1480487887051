@@ -12,7 +12,7 @@
     $userPwd = "3d1TCQCzeNke";
 
     $data['config'] = "{\"conversion_target\":\"answer_units\"}";
-    $data['file'] = "@". dirname(__FILE__). "\sample.pdf";
+    $data['file'] = "@". dirname(__FILE__). "/sample.pdf";
 
     $ch = curl_init();
 
