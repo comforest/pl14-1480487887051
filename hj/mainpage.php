@@ -4,7 +4,17 @@
 	<title>LOL Searcher</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="mainpage.css" />
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#wrapper').css('width', $(window).width()-10);
+			$('#message').css('width', $('#textinput').width()-100);
+			$(window).resize(function() {
+				$('#wrapper').css('width', $(window).width()-10);
+				$('#message').css('width', $('#textinput').width()-100);
+			})
+		});
+
 		window.onload = function() {
 			focus_message();
 		}
@@ -50,14 +60,12 @@
 			<div id="content">
 				<div id="conversation"></div>		
 				<div id="textinput">
-					<input type="text" id="message" onKeyDown="enter();" style="width: 695px">
+					<input type="text" id="message" onKeyDown="enter();">
 					<input type="button" id="send_btn" onclick="sendmessage();" value="전송" style="width: 40px">
 					<input type="button" id="clear_btn" onclick="clearall();" value="삭제" style="width: 40px">
 				</div>
 			</div>
-			<div id="sidebar">
-				
-			</div>
+			<div id="sidebar"></div>
 		</div>
 		<div id="footer"></div>
 	</div>
