@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1><a href="hj/mainpage.php">HI</a></h1>
+<h1><a href="hj/mainpage.php">mainpage</a></h1>
+<h1><a href="hj/doc_con.php">document conversion</a></h1>
 <?php 
 
     $workspace_id = 'cc934d4e-0130-403c-b6e9-df4b78e43c89';

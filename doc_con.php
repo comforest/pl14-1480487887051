@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-	$url = "https://gateway.watsonplatform.net/document-conversion/api";
+	$url = "https://gateway.watsonplatform.net/document-conversion/api/v1/convert_document?version=2015-12-15";
     $userName = "8108ea35-b6da-41f9-b866-9256512e3b5c";
     $userPwd = "3d1TCQCzeNke";
 
