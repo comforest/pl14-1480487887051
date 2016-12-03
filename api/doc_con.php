@@ -12,8 +12,8 @@
                     url: 'html_download.php',
                     dataType: 'html',
                     data: {inputURL: $('#inputURL').val()},
-                    success: function(data) {
-                        $('#html').html(data);
+                    error: function() {
+                        alert('cannot download a html file')
                     }
                 });
                 $.ajax({
@@ -25,7 +25,7 @@
                         $('#content').html(data.timestamp);
                     },
                     error: function() {
-                        alert('error');
+                        alert('Conversion failed');
                     }
                 });
             });
@@ -34,7 +34,6 @@
 </head>
 <body>
 <input type="text" id="inputURL" value="http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/" style="width: 500px"> <button id="doc_conv">문서 분석</button><br>
-<div id="html"></div>
 <div id="content"></div>
 </body>
 </html>

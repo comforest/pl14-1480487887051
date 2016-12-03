@@ -19,5 +19,4 @@
     echo $output;
 
     curl_close($ch);
-    unlink('temp.html');
 ?>
