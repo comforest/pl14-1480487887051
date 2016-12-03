@@ -41,8 +41,8 @@
   function b_rotation_champ($name) {
   	global $region;
 
-  	$id = getChampionID($name);
-  	$url = "https://kr.api.pvp.net/api/lol/kr/v1.2/champion/22?api_key=";
+ 	$id = getChampionID($name);
+  	$url = "https://kr.api.pvp.net/api/lol/kr/v1.2/champion/$id?api_key=";
 
   	$arr = callAPI($url);
 
@@ -89,7 +89,7 @@
   	$result = array();
 	foreach ($arr["data"] as $k => $v) {
 		if($k == $name){
-			return $k;
+			return $v["id"];
 		}
 	}
 	return null;
