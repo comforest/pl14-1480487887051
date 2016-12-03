@@ -7,7 +7,7 @@
 
     if(!isset($_SESSION["dialog"])) $context = array("system"=>array("dialog_stack"=>array("root")));
     else $context = $_SESSION["dialog"];
-    $data = array("input" => array("text"=>"Ashe is the highest popular champion?"), "context"=>$context);
+    $data = array("input" => array("text"=>"$_POST[input]"), "context"=>$context);
     $data_string = json_encode($data);
 
     // create curl resource 
@@ -38,18 +38,32 @@
 
     $_SESSION["dialog"] = $arr["context"];
 
-print_r($arr);
-    if(count($arr["intents"]) != 1){
-		echo "Sorry, I don't know...";
-		return;
-	}
 
-	switch ($arr["intents"][0]["intent"]) {
-	 	case 'popular':
-	 		
+    include $_SERVER["DOCUMENT_ROOT"]."/api/riot.php";
+
+    if(isset($arr["output"]["data"])){
+        $data = $arr["output"]["data"];
+    }else{
+        echo $arr["output"]["text"][0];
+        return;
+    }
+
+	switch ($data) {
+	 	case 'getRotationChampion':
+	 		$result = rotation_champ();
+            echo 'The Rotation Champions are ';
+            foreach ($result as $key => $value) {
+                if(count($result)-1 == $key) echo "and $value";
+                else echo "$value, ";
+            }
 	 		break;
-	 	case 'win_rate':
-
+	 	case 'includeRotationChampion':
+            $name = $arr["output"]["param"][0];
+            if(b_rotation_champ($name))
+                echo "Yes";
+            else
+                echo "No";
+            
 	 		break;
 	 	case 'ban_rate':
 	 		
@@ -59,12 +73,6 @@ print_r($arr);
 	 		break;
 
 	 };
-
- //    $result["intent"] = $arr2;
-    $arr2 = [];
-    foreach ($arr["entities"] as $k => $v) {
-        $result[$v["entity"]][] = $v["value"];
-    }
 ?>
 </body>
 </html>

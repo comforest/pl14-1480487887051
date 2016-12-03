@@ -15,6 +15,13 @@ body {
 	background: rgba(0,0,0,0.5);
 }
 
+@media screen and (max-width: 650px) {
+    
+	#wrapper {
+		left: 0;
+	}
+}
+
 #header {
 	height: 50px;
 	color: #ffffff;
@@ -55,4 +62,9 @@ body {
 	background-color: rgba(0,0,0,0.5);
 	border-radius: 5px;
 	padding: 3px;
+}
+
+.watson {
+	text-align: right;
+	font-color : yellow;
 }
