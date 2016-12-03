@@ -3,20 +3,29 @@ body, p, h1 {
 	margin: 0;
 }
 body {
-	background: #000000;
+	background-size: auto 100vh;
+	background-image: url('/images/lolwallpaper.jpg');
 }
 #wrapper {
 	position: absolute;
-	top: 5px;
-	left: 5px;
-	min-width: 1000px;
+	top: calc(50% - 275px);
+	left: calc(50% - 650px);
+	height: 550px;
+	width: 1300px;
+	background: rgba(0,0,0,0.5);
+}
+
+@media screen and (max-width: 650px) {
+    
+	#wrapper {
+		left: 0;
+	}
 }
 
 #header {
 	height: 50px;
 	color: #ffffff;
 	padding-left: 10px;
-	background: #000000;
 }
 #container #content {
 	margin-right: -200px;
@@ -27,7 +36,6 @@ body {
 	margin-right: 200px;
 	height: 460px;
 	overflow-y: scroll;
-	background-image: url('/images/lolwallpaper.jpg');
 	background-size: auto 460px;
 }
 #container #content #textinput {
@@ -44,11 +52,6 @@ body {
 	background-repeat: no-repeat;
 	background-size: 200px 500px;
 }
-#footer {
-	clear: both;
-	height: 50px;
-	background: #000000;
-}
 
 /* speech bubble */
 .bubblewrap {
@@ -59,4 +62,9 @@ body {
 	background-color: rgba(0,0,0,0.5);
 	border-radius: 5px;
 	padding: 3px;
+}
+
+.watson {
+	text-align: right;
+	font-color : yellow;
 }

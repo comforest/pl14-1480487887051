@@ -7,12 +7,7 @@
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#wrapper').css('width', $(window).width()-10);
 			$('#message').css('width', $('#textinput').width()-100);
-			$(window).resize(function() {
-				$('#wrapper').css('width', $(window).width()-10);
-				$('#message').css('width', $('#textinput').width()-100);
-			})
 			focus_message();
 		});
 
@@ -25,16 +20,27 @@
 			}
 
 			var str = "<div class='bubblewrap'><div class='bubble'><p class='label'>";
-			    str += message.value;
-			    str += "</p></div></div>";
-
-			//TODO Ajax 처리
-
-			message.value = "";
+		    str += message.value;
+		    str += "</p></div></div>";
 			conversation.innerHTML += str;
-
 			conversation.scrollTop = conversation.scrollHeight;
 			focus_message();
+			//TODO Ajax 처리
+
+			$.ajax({
+				url:"/api/conversation.php",
+				type:"post",
+				data:{input:message.value},
+				success:function(data){
+					var str = "<div class='bubblewrap watson'><div class='bubble'><p class='label'>";
+					    str += data;
+					    str += "</p></div></div>";
+						message.value = "";
+						conversation.innerHTML += str;
+						conversation.scrollTop = conversation.scrollHeight;
+						focus_message();
+				}
+			})
 		}
 
 		function clearall() {
@@ -66,7 +72,6 @@
 			</div>
 			<div id="sidebar"></div>
 		</div>
-		<div id="footer"></div>
 	</div>
 </body>
 </html>
