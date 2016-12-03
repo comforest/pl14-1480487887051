@@ -12,20 +12,23 @@
                     url: 'html_download.php',
                     dataType: 'html',
                     data: {inputURL: $('#inputURL').val()},
-                    error: function() {
-                        alert('cannot download a html file')
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: 'doc_conv.php',
-                    dataType: 'json',
-                    success: function(data) {
-                        alert('success');
-                        $('#content').html(data.timestamp);
+                    success:function(){
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'doc_conv.php',
+                            dataType: 'json',
+                            success: function(data) {
+                                alert('success');
+                                $('#content').html(data.timestamp);
+                            },
+                            error: function() {
+                                alert('Conversion failed');
+                            }
+                        });
                     },
                     error: function() {
-                        alert('Conversion failed');
+                        alert('cannot download a html file')
                     }
                 });
             });
