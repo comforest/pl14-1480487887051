@@ -7,7 +7,7 @@
 
     if(!isset($_SESSION["dialog"])) $context = array("system"=>array("dialog_stack"=>array("root")));
     else $context = $_SESSION["dialog"];
-    $data = array("input" => array("text"=>"Ashe is the highest popular champion?"), "context"=>$context);
+    $data = array("input" => array("text"=>"$_POST[input]"), "context"=>$context);
     $data_string = json_encode($data);
 
     // create curl resource 
@@ -38,11 +38,14 @@
 
     $_SESSION["dialog"] = $arr["context"];
 
-print_r($arr);
+    print_r($arr);
+
     if(count($arr["intents"]) != 1){
-		echo "Sorry, I don't know...";
-		return;
-	}
+        echo "Sorry, I don't know...";
+        return;
+    }
+
+    echo($arr["output"]["text"][0]);
 
 	switch ($arr["intents"][0]["intent"]) {
 	 	case 'popular':

@@ -20,9 +20,11 @@
 			}
 
 			var str = "<div class='bubblewrap'><div class='bubble'><p class='label'>";
-			    str += message.value;
-			    str += "</p></div></div>";
-
+		    str += message.value;
+		    str += "</p></div></div>";
+			conversation.innerHTML += str;
+			conversation.scrollTop = conversation.scrollHeight;
+			focus_message();
 			//TODO Ajax 처리
 
 			$.ajax({
@@ -30,15 +32,15 @@
 				type:"post",
 				data:{input:message.value},
 				success:function(data){
-					
+					var str = "<div class='bubblewrap watson'><div class='bubble'><p class='label'>";
+					    str += data;
+					    str += "</p></div></div>";
+						message.value = "";
+						conversation.innerHTML += str;
+						conversation.scrollTop = conversation.scrollHeight;
+						focus_message();
 				}
 			})
-
-			message.value = "";
-			conversation.innerHTML += str;
-
-			conversation.scrollTop = conversation.scrollHeight;
-			focus_message();
 		}
 
 		function clearall() {
