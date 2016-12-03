@@ -1,8 +1,6 @@
 <?php 
   $region = "kr";
 
-  print_r(championSkin("Jax"));
-  print_r(championSkinImage("Jax"));
   function callAPI($url){
    global $region;
    
@@ -34,7 +32,7 @@
 			 return 0;
 		 }
          $rate = $win * 100 / ($win + $lose); 
-		return $rate;
+		return round($rate,2);
       }
    }
 	return null;

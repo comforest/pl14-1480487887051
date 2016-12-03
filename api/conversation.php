@@ -63,10 +63,20 @@
                 echo "Yes";
             else
                 echo "No";
-            
 	 		break;
-	 	case 'ban_rate':
-	 		
+        case 'rateSummoner':
+            $param = $arr["output"]["param"];
+            if($param[0] == "win"){
+                echo "$param[1]'s win rate is ".win_rate($param[1]).'%';
+            }
+            break;
+	 	case 'summoner':
+            $param = $arr["output"]["param"][0];
+            // if($param == "tier"){
+
+            // }else($param == "winrate"){
+
+            // }
 	 		break;
 	 	case 'price':
 	 		
