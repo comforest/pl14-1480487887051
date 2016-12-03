@@ -13,18 +13,22 @@
                     dataType: 'html',
                     data: {inputURL: $('#inputURL').val()},
                     success: function(data) {
-                        $('#html').html(data);
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: 'doc_conv.php',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#content').html(data.timestamp);
-                    },
-                    error: function() {
-                        alert('error');
+                        // $('#html').html(data);
+
+
+                        $.ajax({
+                            type: 'POST',
+                            url: 'doc_conv.php',
+                            dataType: 'json',
+                            success: function(data) {
+                                console.log(data);
+                                $('#content').html(data.timestamp);
+                            },
+                            error: function() {
+                                alert('error');
+                            }
+                        });
+
                     }
                 });
             });

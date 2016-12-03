@@ -38,21 +38,23 @@
 
     $_SESSION["dialog"] = $arr["context"];
 
-    print_r($arr);
 
-    if(count($arr["intents"]) != 1){
-        echo "Sorry, I don't know...";
+    include $_SERVER["DOCUMENT_ROOT"]."/api/riot.php";
+
+    if(isset($arr["output"]["data"])){
+        $data = $arr["output"]["data"];
+    }else{
+        echo $arr["output"]["text"][0];
         return;
     }
 
-    echo($arr["output"]["text"][0]);
-
-	switch ($arr["intents"][0]["intent"]) {
-	 	case 'popular':
-	 		
+	switch ($data) {
+	 	case 'getRotationChampion':
+	 		$result = rotation_champ();
+            print_r($result);
 	 		break;
-	 	case 'win_rate':
-
+	 	case 'includeRotationChampion':
+            echo $arr["output"]["param"][0];
 	 		break;
 	 	case 'ban_rate':
 	 		
@@ -62,12 +64,6 @@
 	 		break;
 
 	 };
-
- //    $result["intent"] = $arr2;
-    $arr2 = [];
-    foreach ($arr["entities"] as $k => $v) {
-        $result[$v["entity"]][] = $v["value"];
-    }
 ?>
 </body>
 </html>

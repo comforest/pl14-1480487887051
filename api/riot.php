@@ -9,9 +9,6 @@
 <?php 
   $region = "kr";
 
-  print_r(rotation_champ());
-
-
   function callAPI($url){
 	$api_key = "RGAPI-040244e7-c5c4-4f93-910b-07b367bf78ca";
 	$base_url = "https://kr.api.pvp.net";
@@ -43,10 +40,12 @@
   }
 
   function getSummonerID($name){
+  	$id = '';
   	return $id;
   }
 
   function getChampionName($id){
+  	$name = $id;
   	return $name;
   }
 
