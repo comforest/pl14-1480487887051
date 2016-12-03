@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>PHP Starter Application</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="style.css" />
-</head>
-<body>
 <?php 
+	session_start();
 
     $workspace_id = 'a5f9a706-0017-4aae-9ae3-f5c7e1f7d9c0';
     $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
     $userPwd = "05MXPpfi8Gs2";
 
-    $data = array("input" => array("text"=>"Ashe is the highest popular champion?"));
+    if(!isset($_SESSION["dialog"])) $context = array("system"=>array("dialog_stack"=>array("root")));
+    else $context = $_SESSION["dialog"];
+    $data = array("input" => array("text"=>"Ashe is the highest popular champion?"), "context"=>$context);
     $data_string = json_encode($data);
 
     // create curl resource 
@@ -41,18 +36,35 @@
 
     curl_close($ch);
 
-    $result = array();
-    foreach ($arr["intents"] as $k => $v) {
-    	$arr2[] = $v["intent"]
-;    }
+    $_SESSION["dialog"] = $arr["context"];
 
-    $result["intent"] = $arr2;
+print_r($arr);
+    if(count($arr["intents"]) != 1){
+		echo "Sorry, I don't know...";
+		return;
+	}
+
+	switch ($arr["intents"][0]["intent"]) {
+	 	case 'popular':
+	 		
+	 		break;
+	 	case 'win_rate':
+
+	 		break;
+	 	case 'ban_rate':
+	 		
+	 		break;
+	 	case 'price':
+	 		
+	 		break;
+
+	 };
+
+ //    $result["intent"] = $arr2;
     $arr2 = [];
     foreach ($arr["entities"] as $k => $v) {
         $result[$v["entity"]][] = $v["value"];
     }
-    print_r($result);
-
 ?>
 </body>
 </html>

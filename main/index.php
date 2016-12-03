@@ -13,16 +13,13 @@
 				$('#wrapper').css('width', $(window).width()-10);
 				$('#message').css('width', $('#textinput').width()-100);
 			})
-		});
-
-		window.onload = function() {
 			focus_message();
-		}
+		});
 
 		function sendmessage() {
 			var conversation = document.getElementById('conversation');
 			var message = document.getElementById('message');
-			if(message.value == "") {
+			if(message.value.replace(/ /g,"") == "") {
 				focus_message();
 				return;
 			}
@@ -30,6 +27,8 @@
 			var str = "<div class='bubblewrap'><div class='bubble'><p class='label'>";
 			    str += message.value;
 			    str += "</p></div></div>";
+
+			//TODO Ajax 처리
 
 			message.value = "";
 			conversation.innerHTML += str;
