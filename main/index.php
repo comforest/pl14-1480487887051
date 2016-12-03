@@ -7,12 +7,7 @@
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#wrapper').css('width', $(window).width()-10);
 			$('#message').css('width', $('#textinput').width()-100);
-			$(window).resize(function() {
-				$('#wrapper').css('width', $(window).width()-10);
-				$('#message').css('width', $('#textinput').width()-100);
-			})
 			focus_message();
 		});
 
@@ -29,6 +24,15 @@
 			    str += "</p></div></div>";
 
 			//TODO Ajax 처리
+
+			$.ajax({
+				url:"/api/conversation.php",
+				type:"post",
+				data:{input:message.value},
+				success:function(data){
+					
+				}
+			})
 
 			message.value = "";
 			conversation.innerHTML += str;
@@ -66,7 +70,6 @@
 			</div>
 			<div id="sidebar"></div>
 		</div>
-		<div id="footer"></div>
 	</div>
 </body>
 </html>
