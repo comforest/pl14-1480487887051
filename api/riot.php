@@ -73,7 +73,15 @@
    $id = $summonerInfo[$name2]['id'];
      return $id; 
    }
-
+	function getSummonerTier($name){
+		global $region;
+		$id = getSummonerID($name);
+		$url = "https://$region.api.pvp.net/api/lol/kr/v2.5/league/by-summoner/$id?api_key=";
+		$data = callAPI($url);
+		if(isset($data[$id]))
+			return $data[$id][0]["tier"];
+		return "provisional"; 
+	}
   function getChampionName($list){
      global $region;
 
@@ -126,6 +134,7 @@
    }
    return null;
   }
+
 
   function championSkin($name) {
 	$region = 'NA';

@@ -72,11 +72,12 @@
             break;
 	 	case 'summoner':
             $param = $arr["output"]["param"][0];
-            // if($param == "tier"){
-
-            // }else($param == "winrate"){
-
-            // }
+            if($param == "tier"){
+                $name = $arr["output"]["param"][1];
+                $tier = getSummonerTier($name);
+                echo "$name's Tier is $tier<br>";
+                echo "<img src = '/images/tier/".strtolower($tier).".png'>";
+            }
 	 		break;
         case 'skin':
             $param = $arr["output"]["param"][0];
@@ -119,8 +120,9 @@
             foreach ($result as $key => $value) {
             }
             echo "</table>";
+            break;
 
-
+        case 'tier':
             break;
 
 	 };
