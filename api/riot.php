@@ -1,6 +1,8 @@
 <?php 
   $region = "kr";
 
+  print_r(championSkin("Jax"));
+  print_r(championSkinImage("Jax"));
   function callAPI($url){
    global $region;
    
@@ -28,11 +30,14 @@
       if($value["playerStatSummaryType"] === "RankedSolo5x5") {
          $win = $value["wins"];
          $lose = $value["losses"];
-         break;
+		 if($win === 0 && $lose === 0) {
+			 return 0;
+		 }
+         $rate = $win * 100 / ($win + $lose); 
+		return $rate;
       }
    }
-   $rate = $win * 100 / ($win + $lose); 
-   return $rate;
+	return null;
   }
   function rotation_champ() {
      global $region;
@@ -107,4 +112,31 @@
    return null;
   }
 
+  function championSkin($name) {
+	global $region;
+	$id = getChampionID($name);
+	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
+	$arr = callAPI($url);
+	
+	$result = array();
+	foreach ($arr["skins"] as $k => $v) {
+		$result[] = $v["name"];
+	}
+	return $result;
+  }
+  
+  function championSkinImage($name) {
+	global $region;
+	$name2 = $name;
+	$id = getChampionID($name);
+	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
+	$arr = callAPI($url);
+	
+	$result = array();
+	foreach ($arr["skins"] as $k => $v) {
+		$tmp = $v["num"];
+		$result[] = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"."$name2"."_$tmp.jpg";
+	}
+	return $result;
+  }
 ?>
