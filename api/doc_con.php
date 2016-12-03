@@ -3,7 +3,7 @@
 <head>
     <title>Document Conversion</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#doc_conv').click(function() {
@@ -21,6 +21,7 @@
                     url: 'doc_conv.php',
                     dataType: 'json',
                     success: function(data) {
+                        alert('success');
                         $('#content').html(data.timestamp);
                     },
                     error: function() {
