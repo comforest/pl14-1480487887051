@@ -7,31 +7,50 @@
 </head>
 <body>
 <?php 
-  function rot_champ() {
-	$url1 = "https://kr.api.pvp.net/api/lol/kr/v1.2/champion?api_key=RGAPI-040244e7-c5c4-4f93-910b-07b367bf78ca";
-	$region = "kr";
+  $region = "kr";
+
+  print_r(rotation_champ());
+
+
+  function callAPI($url){
+	$api_key = "RGAPI-040244e7-c5c4-4f93-910b-07b367bf78ca";
+	$base_url = "https://kr.api.pvp.net";
 	$ch1 = curl_init(); 
 
 	curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1); 
 	curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($ch1, CURLOPT_URL, $url1);
+	curl_setopt($ch1, CURLOPT_URL, $base_url.$url."?api_key=$api_key");
    
 	$output = curl_exec($ch1);
-	$decode = json_decode($output, true);
     curl_close($ch1);
-	echo $arr;
-	
+
+	return json_decode($output, true);
+  }
+
+  function rotation_champ() {
+  	global $region;
+  	$url = "/api/lol/$region/v1.2/champion";
+
+  	$arr = callAPI($url);
+
 	$result = array();
-	$arr2 = $decode['champions'];
-	foreach($arr2 as $key => $value) {
+	foreach($arr["champions"] as $key => $value) {
 		if($value["freeToPlay"] === true) {
-			$result[] = $value['id'];
+			$result[] = getChampionName($value['id']);
 		}
 	}
-	print_r($result);
+	return $result;
   }
-  
-  rot_champ();
+
+  function getSummonerID($name){
+  	return $id;
+  }
+
+  function getChampionName($id){
+  	return $name;
+  }
+
+
 ?>
 </body>
 </html>
