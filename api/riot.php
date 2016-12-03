@@ -15,7 +15,7 @@
 
 	curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1); 
 	curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, 0);
-	curl_setopt($ch1, CURLOPT_URL, $url."?api_key=$api_key");
+	curl_setopt($ch1, CURLOPT_URL, $url."$api_key");
    
 	$output = curl_exec($ch1);
     curl_close($ch1);
@@ -25,37 +25,75 @@
 
   function rotation_champ() {
   	global $region;
-  	$url = "https://kr.api.pvp.net/api/lol/$region/v1.2/champion";
+  	$url = "https://kr.api.pvp.net/api/lol/$region/v1.2/champion?api_key=";
 
   	$arr = callAPI($url);
-
-	// $url = "/api/lol/static-data/$region/v1.2/champion/";
-	// $championList = callAPI($url);
 
 	$result = array();
 	foreach($arr["champions"] as $key => $value) {
 		if($value["freeToPlay"] === true) {
-			$result[] = getChampionName($value['id']);
+			$result[] = $value['id'];
 		}
 	}
-	return $result;
+	return getChampionName($result);
   }
 
-  function getSummonerID($name){
-  	$id = '';
-  	return $id;
-  }
-
-  function getChampionName($id){
+  function b_rotation_champ($name) {
   	global $region;
 
-  	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id";
+  	$id = getChampionID($name);
+  	$url = "https://kr.api.pvp.net/api/lol/kr/v1.2/champion/22?api_key=";
 
   	$arr = callAPI($url);
-  	
-  	return $arr["key"];
+
+	return $arr["freeToPlay"];
   }
-  rotation_champ();
+
+	function getSummonerID($name){
+		$tmp = $name;
+		$name2 = preg_replace("/\s+/","",$tmp);
+
+		global $region; 
+		$url = "https://$region.api.pvp.net/api/lol/$region/v1.4/summoner/by-name/$name2";
+		$summonerInfo = callAPI($url);
+		$id = $summonerInfo[$name2]['id'];
+		return $id; 
+	}
+
+  function getChampionName($list){
+  	global $region;
+
+  	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion?api_key=";
+
+  	$arr = callAPI($url);
+
+  	$result = array();
+  	foreach ($list as $k => $v) {
+		foreach ($arr["data"] as $k1 => $v1) {
+			if($v == $v1["id"]){
+				$result[] = $k1;
+				break;
+			}
+		}
+	}
+
+  	return $result;
+  }
+  function getChampionID($name){
+  	global $region;
+
+  	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion?api_key=";
+
+  	$arr = callAPI($url);
+
+  	$result = array();
+	foreach ($arr["data"] as $k => $v) {
+		if($k == $name){
+			return $k;
+		}
+	}
+	return null;
+  }
 
 ?>
 </body>

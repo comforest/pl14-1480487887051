@@ -51,10 +51,19 @@
 	switch ($data) {
 	 	case 'getRotationChampion':
 	 		$result = rotation_champ();
-            print_r($result);
+            echo 'The Rotation Champions are ';
+            foreach ($result as $key => $value) {
+                if(count($result)-1 == $key) echo "and $value";
+                else echo "$value, ";
+            }
 	 		break;
 	 	case 'includeRotationChampion':
-            echo $arr["output"]["param"][0];
+            $name = $arr["output"]["param"][0];
+            if(b_rotation_champ($name))
+                echo "Yes";
+            else
+                echo "No";
+            
 	 		break;
 	 	case 'ban_rate':
 	 		
