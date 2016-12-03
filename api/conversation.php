@@ -78,11 +78,38 @@
 
             // }
 	 		break;
-	 	case 'price':
-	 		
-	 		break;
+        case 'skin':
+            $param = $arr["output"]["param"][0];
+            $result = championSkin($param);
+            echo "The Champion's skins are<br>";
+            echo "<table>";
+            $i = 0;
+            foreach ($result as $key => $value) {
+                if($i == 0) echo "<tr>";
+                echo "<td>";
+                echo "$key<br>";
+                echo "<img src = '$value' height='250px'><br>";
+                echo "</td>";
+                ++$i;
+                if($i == 7){
+                     echo "</tr>";
+                     $i = 0;
+                };
+            }
+            echo "</table>";
+            break;
+        case 'show skin':
+            $param = $arr["output"]["param"][0];
+            $result = championSkin($param);
+            echo "The Champion's skins are<br>";
+            foreach ($result as $key => $value) {
+                if(count($result)-1 == $key) echo "$value";
+                else echo "$value<br>";
+            }
+            break;
 
 	 };
 ?>
 </body>
+<img src="">
 </html>

@@ -111,14 +111,14 @@
   }
 
   function championSkin($name) {
-	global $region;
+	$region = 'NA';
 	$id = getChampionID($name);
 	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
 	$arr = callAPI($url);
 	
 	$result = array();
 	foreach ($arr["skins"] as $k => $v) {
-		$result[] = $v["name"];
+		$result[$v["name"]] = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"."$name"."_$v[num].jpg";
 	}
 	return $result;
   }
