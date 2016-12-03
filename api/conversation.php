@@ -101,10 +101,26 @@
         case 'championList':
             $result = getChampionList();
             echo 'The Champions are ';
+            echo "<table>";
+            $i = 0;
             foreach ($result as $key => $value) {
-                if(count($result)-1 == $key) echo "and $value";
-                else echo "$value, ";
+                if($i == 0) echo "<tr>";
+                echo "<td style='width:100px'>";
+                echo "$value<br>";
+                echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/$value.png 
+' height='70px'><br>";
+                echo "</td>";
+                ++$i;
+                if($i == 11){
+                     echo "</tr>";
+                     $i = 0;
+                };
             }
+            foreach ($result as $key => $value) {
+            }
+            echo "</table>";
+
+
             break;
 
 	 };
