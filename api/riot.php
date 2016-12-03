@@ -94,6 +94,23 @@
      return $result;
   }
 
+  function getChampionList(){
+     global $region;
+
+     $url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion?api_key=";
+
+     $arr = callAPI($url);
+
+     $result = array();
+	foreach ($arr["data"] as $k1 => $v1) {
+		$result[] = $k1;
+	}
+      
+   
+
+     return $result;
+  }
+
   function getChampionID($name){
      global $region;
 
@@ -123,18 +140,4 @@
 	return $result;
   }
   
-  function championSkinImage($name) {
-	global $region;
-	$name2 = $name;
-	$id = getChampionID($name);
-	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
-	$arr = callAPI($url);
-	
-	$result = array();
-	foreach ($arr["skins"] as $k => $v) {
-		$tmp = $v["num"];
-		$result[] = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"."$name2"."_$tmp.jpg";
-	}
-	return $result;
-  }
 ?>

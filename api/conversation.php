@@ -98,13 +98,12 @@
             }
             echo "</table>";
             break;
-        case 'show skin':
-            $param = $arr["output"]["param"][0];
-            $result = championSkin($param);
-            echo "The Champion's skins are<br>";
+        case 'championList':
+            $result = getChampionList();
+            echo 'The Champions are ';
             foreach ($result as $key => $value) {
-                if(count($result)-1 == $key) echo "$value";
-                else echo "$value<br>";
+                if(count($result)-1 == $key) echo "and $value";
+                else echo "$value, ";
             }
             break;
 
