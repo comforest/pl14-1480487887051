@@ -20,6 +20,7 @@
                             dataType: 'json',
                             success: function(data) {
                                 alert('success');
+                                console.log(data);
                                 $('#content').html(data.timestamp);
                             },
                             error: function() {
