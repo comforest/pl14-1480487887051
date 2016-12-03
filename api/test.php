@@ -10,7 +10,7 @@
 <?php 
 
     // create curl resource 
-    $ch = curl_init(); 
+    $ch = curl_init();
 
     // set url 
     curl_setopt($ch, CURLOPT_URL, "http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/"); 
