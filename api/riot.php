@@ -151,6 +151,8 @@
 
 
   function championSkin($name) {
+
+    global $language;
    $id = getChampionID($name);
    $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=skins&api_key=";
    $arr = callAPI($url);
