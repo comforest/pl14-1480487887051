@@ -131,7 +131,7 @@
             echo "</table>";
             break;
         case 'lol':
-            // whatLoL();
+            echo whatLoL();
             break;
         case 'rankingTop':
             echo "The best player is ".rankingTop();
