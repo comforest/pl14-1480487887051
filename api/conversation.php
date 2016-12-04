@@ -111,6 +111,18 @@
             }
             echo "</table>";
             break;
+        case 'skill':
+            $param = $arr["output"]["param"][0];
+            echo $param;
+            $name = championSkillName($param);
+            $img = championSkillImage($param);
+            echo "The Champion's skills are<br>";
+            foreach ($name as $key => $value) {
+                echo "$key - $value ";
+                echo "<img src = '$img[$key]' height='30px'><br>";
+                echo "<br>";
+            }
+            break;
         case 'championList':
             $result = getChampionList();
             echo 'The Champions are ';
