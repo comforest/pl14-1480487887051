@@ -202,22 +202,26 @@
             break;
         case 'map': //맵에 관한 설명
             $param = $arr["output"]["param"][0];
-            $id;
+            $id; $jpg;
             switch ($param) {
                 case 'Crystal Scar':
                     $id = CrystalScar;
+                    $jpg = "crystal_scar";
                     break;
                 case 'Howling Abyss':
                     $id = HowlingAbyss;
+                    $jpg = "howling_abyss";
                     break;
                 case "Summoner's Rift":
                     $id = SummonersRift;
+                    $jpg = "summoners_rift";
                     break;
                 case 'Twisted Treeline':
                     $id = TwistedTreeline;
+                    $jpg = "twisted_treeline";
                     break;
             }
-            echo "<img src = '../images/maps/$id.jpg' height='100px'><br>";
+            echo "<img src = '../images/maps/". $jpg. ".jpg' height='300px'><br>";
             echo Map($id);
             break;
 	 };
