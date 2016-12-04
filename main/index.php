@@ -18,6 +18,7 @@
 			$('#message').css('width', $('#textinput').width()-100);
 		}
 		$(document).ready(function() {
+			document.getElementById('conversation').innerHTML += "<div class='bubblewrap watson'><div class='bubble'><p class='label'>Hello! I'm teemo. Ask anything to me! kkk</p></div></div>";
 			size();
 			$(window).resize(function() {size();});
 			focus_message();

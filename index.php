@@ -1,83 +1,30 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset = "utf-8">
-      <title>Welcome!</title>
-      <style type = "text/css">
-         body {
-            background: url('images/loginimg.png') no-repeat center fixed;
-            background-size: 1600px 1000px
-         }
-         .loginForm {
-            position:relative;
-            width:1000px
-         }
-         .loginForm p { font-size: 12px; }
-         .loginForm .box { width:326px }
-         .loginForm .box .iText1 {
-            width: 355px; margin: 3px 0;
-            margin-top: 360px;
-            margin-left: 285px;
-            padding:10px 12px;
-            border:1px solid #e1e1e1
-         }
-         .loginForm .box .iText2 {
-            width: 355px; margin: 3px 0;
-            margin-top: 20px;
-            margin-left: 285px;
-            padding:10px 12px;
-            border:1px solid #e1e1e1
-         }
-         .loginForm .box p {
-            margin-top:1em
-         }
-         .loginForm .box p span,
-         .loginForm .box p input {
-            height: 18px; font-size: 11px;
-            color: #737373; line-height:18px;
-            vertical-align:middle
-         }
-         .loginForm .loginBtn {
-            background: #d9aa34;
-            background-image: -webkit-linear-gradient(top, #d9aa34, #b8482c);
-            background-image: -moz-linear-gradient(top, #d9aa34, #b8482c);
-            background-image: -ms-linear-gradient(top, #d9aa34, #b8482c);
-            background-image: -o-linear-gradient(top, #d9aa34, #b8482c);
-            background-image: linear-gradient(to bottom, #d9aa34, #b8482c);
-            -webkit-border-radius: 6;
-            -moz-border-radius: 6;
-            border-radius: 6px;
-            font-family: Arial;
-            color: #ffffff;
-            font-size: 18px;
-            padding: 10px 30px 9px 30px;
-            margin-left: 550px;
-            text-decoration: none;
-         }
-         .loginForm .loginBtn:hover {
-            background: #fabb3c;
-            background-image: -webkit-linear-gradient(top, #fabb3c, #d97b34);
-            background-image: -moz-linear-gradient(top, #fabb3c, #d97b34);
-            background-image: -ms-linear-gradient(top, #fabb3c, #d97b34);
-            background-image: -o-linear-gradient(top, #fabb3c, #d97b34);
-            background-image: linear-gradient(to bottom, #fabb3c, #d97b34);
-            text-decoration: none;
-         }
-      </style>
-   </head>
-   
-   <body>
-       <div class="loginForm">
-        <form method="post" name="" action="">
-           <div class="box">
-            <input type="text" class="iText1">
-            <br><br>
-            <input type="password" name="" id="" class="iText2">
-            <br><br>
-          </div>
-          <a href="main" id="" class="loginBtn">로그인</a>
-		  <br>
-        </form>
+<head>
+   <meta charset = "utf-8">
+   <title>Welcome!</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+   <script type="text/javascript">
+      function size() {
+         $('#wrapper').css('width', $(window).width()-10);
+         $('#wrapper').css('height', $(window).height()-10);
+      }
+      $(document).ready(function() {
+         size();
+         $(window).resize(function() {size();});
+      });
+   </script>
+</head>
+<body>
+   <div id="wrapper">
+      <div id="container">
+         <h1>LOL Searcher</h1>
+         <p>LOL Searcher는 최고의 롤 백과사전입니다.</p>
+         <p>귀여운 티모에게 뭐든지 물어보세요!</p>
+         <br>
+         <a href="main" id="" class="loginBtn">시작하기</a>
       </div>
-   </body>
+   </div>
+</body>
 </html>
