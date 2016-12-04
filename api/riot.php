@@ -2,7 +2,6 @@
   $region = "kr";
   $language= "na";
 
-
   function callAPI($url){
    global $region;
    
@@ -131,9 +130,6 @@
    foreach ($arr["data"] as $k1 => $v1) {
       $result[] = $k1;
    }
-      
-   
-
      return $result;
   }
 
@@ -210,6 +206,7 @@
    return $no1Name;
 
   }
+  
   function itemInfo($name) {
   global $language;
    $id = getItemID($name);
@@ -218,5 +215,54 @@
    $arr = callAPI($url);
    
    return $arr;   
+  }
+  
+  function chamionSkillName($name) {
+	  global $language;
+	  $id = getChampionID($name);
+	  //spell url
+	  $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=spells&api_key=";
+	  //passive url
+	  $url2 = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=passive&api_key=";
+	  
+	  $arr = callAPI($url);
+	  $arr2 = callAPI($url2);
+	  
+	  $skill = array("passive"=>null,"q"=>null,"w"=>null,"e"=>null,"r"=>null);
+	  $skill["passive"] = $arr2["passive"]["name"];
+	  $skill["q"] = $arr["spells"][0]["name"];
+	  $skill["w"] = $arr["spells"][1]["name"];
+	  $skill["e"] = $arr["spells"][2]["name"];
+	  $skill["r"] = $arr["spells"][3]["name"];
+	  	  
+	  return $skill;
+  }
+  
+  function chamionSkillImage($name) {
+	  global $language;
+	  $id = getChampionID($name);
+	  //spell url
+	  $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=spells&api_key=";
+	  //passive url
+	  $url2 = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=passive&api_key=";
+	  
+	  $arr = callAPI($url);
+	  $arr2 = callAPI($url2);
+	  $skillImage = array("passive"=>null,"q"=>null,"w"=>null,"e"=>null,"r"=>null);
+	  $skillImage["passive"] = $arr2["passive"]["image"]["full"];
+	  $skillImage["q"] = $arr["spells"][0]["image"]["full"];
+	  $skillImage["w"] = $arr["spells"][1]["image"]["full"];
+	  $skillImage["e"] = $arr["spells"][2]["image"]["full"];
+	  $skillImage["r"] = $arr["spells"][3]["image"]["full"];
+	  
+	  foreach($skillImage as $k => $v) {
+		  if($k == "passive") {
+			  $skillImage[$k] = "http://ddragon.leagueoflegends.com/cdn/6.23.1/img/passive/$v";
+		  }
+		  else {
+			  $skillImage[$k] = "http://ddragon.leagueoflegends.com/cdn/6.23.1/img/spell/$v";
+		  }
+	  }
+	  return $skillImage;
   }
 ?>
