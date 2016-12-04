@@ -12,11 +12,13 @@
                 url: 'html_download.php',
                 dataType: 'html',
                 data: {input: inputURL},
+                async: false,
                 success:function() {
                     $.ajax({
                         type: 'POST',
                         url: 'doc_conv.php',
                         dataType: 'json',
+                        async: false,
                         success: function(data) {
                             console.log(data);
                             var len = data.answer_units.length;
@@ -50,17 +52,21 @@
 
         function Question(url, num) {
             var arr = getconversion(url);
-            $(document).ajaxStop(function() {
-                document.write(arr.text[num]+'<br><br>');
-            });
+            $('#content').append(arr.text[num]+'<br>');
         }
-        function WhatisLOL() {Question("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/", 2);}
+        function WhatisLOL() {
+            Question("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/", 2);
+        }
+        function Naver() {
+            Question("www.naver.com", 4);
+        }
     </script>
 </head>
 <body>
 <div id="content"></div>
 <script>
     WhatisLOL();
+    Naver();
 </script>
 </body>
 </html>
