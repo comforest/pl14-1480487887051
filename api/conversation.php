@@ -165,8 +165,6 @@
             echo $arr["description"];
             break;
 	 };
-
-
 ?>
 </body>
 </html>

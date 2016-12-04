@@ -2,7 +2,6 @@
   $region = "kr";
   $language= "na";
 
-
   function callAPI($url){
    global $region;
    
@@ -228,6 +227,4 @@
     }
    return $result;   
   }
-
-
 ?>

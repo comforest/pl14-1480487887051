@@ -41,15 +41,11 @@
 		    	str += "</p></div></div>";
 			conversation.innerHTML += str;
 			conversation.scrollTop = conversation.scrollHeight;
-<<<<<<< HEAD
+
 
 			var val = message.value;
 			message.value = "";
 			focus_message();
-=======
-			var val = message.value;
-			message.value = "";
->>>>>>> 170e34dafeb9996e9ad8ce2e737884975471fc95
 			//TODO Ajax 처리
 
 			$.ajax({
