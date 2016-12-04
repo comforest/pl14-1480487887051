@@ -155,9 +155,8 @@
 
 
   function championSkin($name) {
-   $region = 'NA';
    $id = getChampionID($name);
-   $url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
+   $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=skins&api_key=";
    $arr = callAPI($url);
    
    $result = array();
@@ -219,4 +218,18 @@
    
    return $arr;   
   }
+  function getItemList() {
+    global $language;
+   $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/item?itemListData=hideFromAll&api_key=";
+   $arr = callAPI($url);
+   $result = array();
+   print_r($arr["data"]);
+    foreach ($arr["data"] as $key => $value) {
+      $result[$key] = $value["name"];
+    }
+   return $result;   
+  }
+
+  print_r(getItemList());
+
 ?>

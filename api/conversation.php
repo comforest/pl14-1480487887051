@@ -136,6 +136,9 @@
         case 'rankingTop':
             echo "The best player is ".rankingTop();
             break;
+        case 'itemList':
+            print_r(getItemList());
+            break;
 
 	 };
 ?>
