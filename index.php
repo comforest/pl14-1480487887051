@@ -22,6 +22,7 @@
          <h1>LOL Searcher</h1>
          <p>LOL Searcher는 최고의 롤 백과사전입니다.</p>
          <p>귀여운 티모에게 뭐든지 물어보세요!</p>
+         <p>티모에게 반갑게 인사하면 대답할 수 있는 질문 몇 가지를 알려줄 거예요.</p>
          <br>
          <a href="main" id="" class="loginBtn">시작하기</a>
       </div>

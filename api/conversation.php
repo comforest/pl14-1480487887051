@@ -87,6 +87,10 @@
             if($param == "tier"){
                 $name = $arr["output"]["param"][1];
                 $tier = getSummonerTier($name);
+                if($tier == "") {
+                    echo "Summoner does not exist.";
+                    break;
+                }
                 echo "$name's Tier is $tier<br>";
                 echo "<img src = '../images/tier/".$tier.".png'>";
             }
