@@ -45,6 +45,8 @@
     }
 
     function whatLoL() {
-        $arr = conversion("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/");
+        $data = json_decode(conversion("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/"), true);
+
+        return $data["answer_units"][2]["content"][0]["text"];
     }
 ?>

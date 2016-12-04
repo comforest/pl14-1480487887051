@@ -38,6 +38,7 @@
 
     $_SESSION["dialog"] = $arr["context"];
 
+
     include $_SERVER["DOCUMENT_ROOT"]."/api/riot.php";
     include $_SERVER["DOCUMENT_ROOT"]."/api/doc_con.php";
 
@@ -56,7 +57,7 @@
             $i = 0;
             foreach ($result as $key => $value) {
                 if($i == 0) echo "<tr>";
-                echo "<td style='width:100px'>";
+                echo "<td style='width:calc(100vw/12)'>";
                 echo "$value<br>";
                 echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/$value.png ' height='70px'><br>";
                 echo "</td>";
@@ -117,7 +118,7 @@
             $i = 0;
             foreach ($result as $key => $value) {
                 if($i == 0) echo "<tr>";
-                echo "<td style='width:100px'>";
+                echo "<td style='width:calc(100vw/12)'>";
                 echo "$value<br>";
                 echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/$value.png ' height='70px'><br>";
                 echo "</td>";
@@ -129,17 +130,40 @@
             }
             echo "</table>";
             break;
-        case 'numberofChampions':
-            $result = getChampionList();
-            echo 'The number of Champions is '.count($result);
-            break;
         case 'lol':
-            // whatLoL();
+            echo whatLoL();
             break;
         case 'rankingTop':
             echo "The best player is ".rankingTop();
             break;
+        case 'itemList':
+            $arr = getItemList();
+            echo "Item's list is";
+            echo "<table>";
+            $i = 0;
+            foreach ($arr as $key => $value) {
+                if($i == 0) echo "<tr>";
+                echo "<td style='calc(100vw/10)'>";
+                echo "$value<br>";
+                echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$key.png ' height='70px'><br>";
+                echo "</td>";
+                ++$i;
+                if($i == 9){
+                     echo "</tr>";
+                     $i = 0;
+                };
+            }
+            echo "</table>";
 
+
+            break;
+        case 'itemInfo':
+            echo $param = $arr["output"]["param"][0];
+            $arr = itemInfo($param);
+            echo $param." Information<br>";
+            echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png ' height='70px'><br>";
+            echo $arr["description"];
+            break;
 	 };
 ?>
 </body>
