@@ -111,7 +111,7 @@
    global $region; 
    $url = "https://$region.api.pvp.net/api/lol/$region/v1.4/summoner/by-name/$name2?api_key=";
    $summonerInfo = callAPI($url);
-   if($summonerInfo["status"]["status_code"] == 404) {
+   if(isset($summonerInfo["status"]["status_code"]) && $summonerInfo["status"]["status_code"] == 404) {
       return null;
    }
    else {
