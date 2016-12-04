@@ -158,7 +158,9 @@
 
             break;
         case 'itemInfo':
-
+            $param = $arr["output"]["param"][0];
+            $arr = itemInfo($param);
+            print_r($arr);
             break;
 	 };
 
