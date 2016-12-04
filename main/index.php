@@ -4,7 +4,7 @@
 	<title>LOL Searcher</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="mainpage.css" />
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
 		function size() {
 			$('#wrapper').css('width', $(window).width()-10);
