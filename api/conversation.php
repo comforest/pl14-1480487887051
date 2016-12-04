@@ -134,7 +134,7 @@
             echo 'The number of Champions is '.count($result);
             break;
         case 'lol':
-            // whatLoL();
+            echo whatLoL();
             break;
         case 'rankingTop':
             echo "The best player is ".rankingTop();

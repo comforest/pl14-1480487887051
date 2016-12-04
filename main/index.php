@@ -38,6 +38,7 @@
 		    	str += "</p></div></div>";
 			conversation.innerHTML += str;
 			conversation.scrollTop = conversation.scrollHeight;
+			var val = message.value;
 			message.value = "";
 			focus_message();
 			//TODO Ajax 처리
@@ -45,7 +46,7 @@
 			$.ajax({
 				url:"../api/conversation.php",
 				type:"post",
-				data:{input:message.value},
+				data:{input:val},
 				success: function(data){
 					var str = "<div class='bubblewrap watson'><div class='bubble'><p class='label'>";
 					    str += data;
