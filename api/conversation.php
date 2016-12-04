@@ -118,8 +118,8 @@
             $img = championSkillImage($param);
             echo "The Champion's skills are<br>";
             foreach ($name as $key => $value) {
-                echo "$key - $value ";
-                echo "<img src = '$img[$key]' height='30px'><br>";
+                echo "<img src = '$img[$key]' height='30px'> ";
+                echo "$key - $value<br>";
                 echo "<br>";
             }
             break;
