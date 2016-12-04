@@ -28,15 +28,16 @@
       if($value["playerStatSummaryType"] === "RankedSolo5x5") {
          $win = $value["wins"];
          $lose = $value["losses"];
-		 if($win === 0 && $lose === 0) {
-			 return 0;
-		 }
+       if($win === 0 && $lose === 0) {
+          return 0;
+       }
          $rate = $win * 100 / ($win + $lose); 
-		return round($rate,2);
+      return round($rate,2);
       }
    }
-	return null;
+   return null;
   }
+  
   function rotation_champ() {
      global $region;
      $url = "https://$region.api.pvp.net/api/lol/$region/v1.2/champion?api_key=";
@@ -51,7 +52,20 @@
    }
    return getChampionName($result);
   }
+  
+  function all_champ() {
+   global $region;
+    $url = "https://$region.api.pvp.net/api/lol/$region/v1.2/champion?api_key=";
 
+    $arr = callAPI($url);
+
+    $result = array();
+    foreach($arr["champions"] as $key => $value) {
+         $result[] = $value['id'];
+    }
+   return getChampionName($result);
+  }
+  
   function b_rotation_champ($name) {
      global $region;
 
@@ -73,15 +87,17 @@
    $id = $summonerInfo[$name2]['id'];
      return $id; 
    }
-	function getSummonerTier($name){
-		global $region;
-		$id = getSummonerID($name);
-		$url = "https://$region.api.pvp.net/api/lol/kr/v2.5/league/by-summoner/$id?api_key=";
-		$data = callAPI($url);
-		if(isset($data[$id]))
-			return $data[$id][0]["tier"];
-		return "provisional"; 
-	}
+  
+   function getSummonerTier($name){
+      global $region;
+      $id = getSummonerID($name);
+      $url = "https://$region.api.pvp.net/api/lol/kr/v2.5/league/by-summoner/$id?api_key=";
+      $data = callAPI($url);
+      if(isset($data[$id]))
+        return strtolower($data[$id][0]["tier"]);
+      return "provisional"; 
+   }
+
   function getChampionName($list){
      global $region;
 
@@ -110,9 +126,9 @@
      $arr = callAPI($url);
 
      $result = array();
-	foreach ($arr["data"] as $k1 => $v1) {
-		$result[] = $k1;
-	}
+   foreach ($arr["data"] as $k1 => $v1) {
+      $result[] = $k1;
+   }
       
    
 
@@ -137,16 +153,65 @@
 
 
   function championSkin($name) {
-	$region = 'NA';
-	$id = getChampionID($name);
-	$url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
-	$arr = callAPI($url);
-	
-	$result = array();
-	foreach ($arr["skins"] as $k => $v) {
-		$result[$v["name"]] = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"."$name"."_$v[num].jpg";
-	}
-	return $result;
+   $region = 'NA';
+   $id = getChampionID($name);
+   $url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
+   $arr = callAPI($url);
+   
+   $result = array();
+   foreach ($arr["skins"] as $k => $v) {
+      $result[$v["name"]] = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"."$name"."_$v[num].jpg";
+   }
+   return $result;
   }
   
+  function championSkinImage($name) {
+   global $region;
+   $name2 = $name;
+   $id = getChampionID($name);
+   $url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
+   $arr = callAPI($url);
+   
+   $result = array();
+   foreach ($arr["skins"] as $k => $v) {
+      $tmp = $v["num"];
+      $result[] = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"."$name2"."_$tmp.jpg";
+   }
+   return $result;
+  }
+  
+  function getItemID($name) {
+   $url = "https://global.api.pvp.net/api/lol/static-data/na/v1.2/item?api_key=";
+   $arr = callAPI($url);
+   
+   foreach($arr["data"] as $k => $v) {
+      if($v["name"] == $name) {
+         return $v["id"];
+      }
+   }   
+  }
+  function rankTop() {
+   global $region;
+   $url = "https://$region.api.pvp.net/api/lol/$region/v2.5/league/challenger?type=RANKED_SOLO_5x5&api_key=";
+   $arr = callAPI($url);
+   
+   $no1 = $arr["entries"][0]["leaguePoints"];
+   $no1Name = $arr["entries"][0]["playerOrTeamName"]; 
+   
+   foreach($arr["entries"] as $k => $v) {
+      if($v["leaguePoints"] >= $no1) {
+         $no1 = $v["leaguePoints"];
+         $no1Name = $v["playerOrTeamName"];
+      }
+   }
+   return $no1Name;
+  }
+  function itemInfo($name) {
+   $id = getItemID($name);
+   $url = "https://global.api.pvp.net/api/lol/static-data/na/v1.2/item/$id?itemData=all&api_key=";
+   
+   $arr = callAPI($url);
+   
+   return $arr;   
+  }
 ?>
