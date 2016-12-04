@@ -10,15 +10,14 @@
 			$('#wrapper').css('width', $(window).width()-10);
 			$('#wrapper').css('height', $(window).height()-10);
 			$('#conversation').css('height', $(window).height()-100);
-			$('#sidebar').css('height', $(window).height()-60);
+			$('#sidebar').css('height', $(window).height()-70);
 			$('#sidebar').css('width', $('#sidebar').height()*0.4);
-			$('#conversation').css('margin-right', $('#sidebar').width());
-			$('#textinput').css('margin-right', $('#sidebar').width());
-			$('#content').css('margin-right', -($('#sidebar').width()+50));
+			$('#conversation').css('margin-left', $('#sidebar').width()+5);
+			$('#textinput').css('margin-left', $('#sidebar').width()+5);
+			$('#content').css('margin-left', -($('#sidebar').width()+5));
 			$('#message').css('width', $('#textinput').width()-100);
 		}
 		$(document).ready(function() {
-			size();
 			size();
 			$(window).resize(function() {size();});
 			focus_message();

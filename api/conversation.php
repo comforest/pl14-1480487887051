@@ -111,6 +111,18 @@
             }
             echo "</table>";
             break;
+        case 'skill':
+            $param = $arr["output"]["param"][0];
+            echo $param;
+            $name = championSkillName($param);
+            $img = championSkillImage($param);
+            echo "The Champion's skills are<br>";
+            foreach ($name as $key => $value) {
+                echo "<img src = '$img[$key]' height='30px'> ";
+                echo "$key - $value<br>";
+                echo "<br>";
+            }
+            break;
         case 'championList':
             $result = getChampionList();
             echo 'The Champions are ';
@@ -158,11 +170,30 @@
 
             break;
         case 'itemInfo':
-            echo $param = $arr["output"]["param"][0];
+            $param = $arr["output"]["param"][0];
             $arr = itemInfo($param);
             echo $param." Information<br>";
             echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png ' height='70px'><br>";
             echo $arr["description"];
+            break;
+        case 'map':
+            $param = $arr["output"]["param"][0];
+            $id;
+            switch ($param) {
+                case 'Crystal Scar':
+                    $id = CrystalScar;
+                    break;
+                case 'Howling Abyss':
+                    $id = HowlingAbyss;
+                    break;
+                case "Summoner's Rift":
+                    $id = SummonersRift;
+                    break;
+                case 'Twisted Treeline':
+                    $id = TwistedTreeline;
+                    break;
+            }
+            echo Map($id);
             break;
 	 };
 ?>

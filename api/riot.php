@@ -2,7 +2,6 @@
   $region = "kr";
   $language= "na";
   
-  print_r(championSkillDescrip("Jax"));
   function callAPI($url){
    global $region;
    
@@ -22,7 +21,7 @@
    global $region;
    $id = getSummonerID($name);
    if($id == null) {
-	   return null;
+      return null;
    }
    $url = "https://$region.api.pvp.net/api/lol/$region/v1.3/stats/by-summoner/$id/summary?season=SEASON2016&api_key=";
    
@@ -90,21 +89,21 @@
    $url = "https://$region.api.pvp.net/api/lol/$region/v1.4/summoner/by-name/$name2?api_key=";
    $summonerInfo = callAPI($url);
    if($summonerInfo["status"]["status_code"] == 404) {
-	   return null;
+      return null;
    }
    else {
- 	 $id = $summonerInfo[$name2]['id'];
- 	 return $id; 
+     $id = $summonerInfo[$name2]['id'];
+     return $id; 
    }
   }
   
    function getSummonerTier($name){
       global $region;
       $id = getSummonerID($name);
-	  
-	  if($id == null) {
-		  return null;
-	  }
+     
+     if($id == null) {
+        return null;
+     }
       $url = "https://$region.api.pvp.net/api/lol/$region/v2.5/league/by-summoner/$id?api_key=";
       $data = callAPI($url);
       if(isset($data[$id]))
@@ -163,10 +162,12 @@
 
 
   function championSkin($name) {
+
+    global $language;
    $id = getChampionID($name);
    
    if($id == null) {
-	   return null;
+      return null;
    }
    $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=skins&api_key=";
    $arr = callAPI($url);
@@ -184,7 +185,7 @@
    $id = getChampionID($name);
    
    if($id == null) {
-	 return null;
+    return null;
    }
    $url = "https://global.api.pvp.net/api/lol/static-data/$region/v1.2/champion/$id?champData=skins&api_key=";
    $arr = callAPI($url);
@@ -206,7 +207,7 @@
         if(isset($v["name"]) && $v["name"] == $name)
           return $v["id"];
      }
-	 return null;
+    return null;
   }
   function rankingTop() {
    global $region;
@@ -230,7 +231,7 @@
    global $language;
    $id = getItemID($name);
    if($id == null) {
-	   return null;
+      return null;
    }
    $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/item/$id?itemListData=sanitizedDescription&api_key=";
    
@@ -242,9 +243,9 @@
   function championSkillName($name) {
      global $language;
      $id = getChampionID($name);
-	 if($id == null) {
-		 return null;
-	 }
+    if($id == null) {
+       return null;
+    }
      //spell url
      $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=spells&api_key=";
      //passive url
@@ -263,35 +264,35 @@
      return $skill;
   }
   function championSkillDescrip($name) {
-	 global $language;
-	 $id = getChampionID($name);
-	 if($id == null) {
-		 return null;
-	 }
-	 //spell url
+    global $language;
+    $id = getChampionID($name);
+    if($id == null) {
+       return null;
+    }
+    //spell url
      $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=spells&api_key=";
      //passive url
      $url2 = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=passive&api_key=";
-	 
+    
      $arr = callAPI($url);
-     $arr2 = callAPI($url2);	
-	 
-     $skill = array("passive"=>null,"q"=>null,"w"=>null,"e"=>null,"r"=>null);	
-	 $skill["passive"] = $arr2["passive"]["description"];
-	 $skill["q"] = $arr["spells"][0]["description"];
-	 $skill["w"] = $arr["spells"][1]["description"];
-	 $skill["e"] = $arr["spells"][2]["description"];
- 	 $skill["r"] = $arr["spells"][3]["description"];
-	 
-	 return $skill;
+     $arr2 = callAPI($url2);   
+    
+     $skill = array("passive"=>null,"q"=>null,"w"=>null,"e"=>null,"r"=>null);   
+    $skill["passive"] = $arr2["passive"]["description"];
+    $skill["q"] = $arr["spells"][0]["description"];
+    $skill["w"] = $arr["spells"][1]["description"];
+    $skill["e"] = $arr["spells"][2]["description"];
+     $skill["r"] = $arr["spells"][3]["description"];
+    
+    return $skill;
   }
   
   function championSkillImage($name) {
      global $language;
      $id = getChampionID($name);
-	 if($id == null) {
-		 return null;
-	 }
+    if($id == null) {
+       return null;
+    }
      //spell url
      $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/champion/$id?champData=spells&api_key=";
      //passive url

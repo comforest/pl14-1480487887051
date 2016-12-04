@@ -44,9 +44,30 @@
         
     }
 
+    function printconv($url) {
+        $temp = json_decode(conversion($url), true);
+
+        for($i=0; $i<count($temp["answer_units"]); $i++) {
+            echo $i. '<br>';
+            echo $temp["answer_units"][$i]["title"]. '<br>';
+            echo $temp["answer_units"][$i]["content"][0]["text"]. '<br><br>';
+        }
+    }
+
     function whatLoL() {
         $data = json_decode(conversion("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/"), true);
 
         return $data["answer_units"][2]["content"][0]["text"];
     }
+
+    define("SummonersRift", 4);
+    define("TwistedTreeline", 5);
+    define("HowlingAbyss", 6);
+    define("CrystalScar", 7);
+
+    function Map($id) {
+        $data = json_decode(conversion("https://en.wikipedia.org/wiki/League_of_Legends"), true);
+        return $data["answer_units"][$id]["content"][0]["text"];
+    }
+
 ?>
