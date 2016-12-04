@@ -6,12 +6,25 @@
 	<link rel="stylesheet" href="mainpage.css" />
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
+		function size() {
+			$('#wrapper').css('width', $(window).width()-10);
+			$('#wrapper').css('height', $(window).height()-10);
+			$('#conversation').css('height', $(window).height()-100);
+			$('#sidebar').css('height', $(window).height()-60);
+			$('#sidebar').css('width', $('#sidebar').height()*0.5);
+			$('#conversation').css('margin-right', $('#sidebar').width());
+			$('#textinput').css('margin-right', $('#sidebar').width());
+			$('#content').css('margin-right', -$('#sidebar').width());
 			$('#message').css('width', $('#textinput').width()-100);
+		}
+		$(document).ready(function() {
+			size();
+			$(window).resize(function() {size();});
 			focus_message();
 		});
 
 		function sendmessage() {
+			document.getElementById('send_btn').disabled = true;
 			var conversation = document.getElementById('conversation');
 			var message = document.getElementById('message');
 			if(message.value.replace(/ /g,"") == "") {
@@ -20,10 +33,11 @@
 			}
 
 			var str = "<div class='bubblewrap'><div class='bubble'><p class='label'>";
-		    str += message.value;
-		    str += "</p></div></div>";
+		    	str += message.value;
+		    	str += "</p></div></div>";
 			conversation.innerHTML += str;
 			conversation.scrollTop = conversation.scrollHeight;
+			message.value = "";
 			focus_message();
 			//TODO Ajax 처리
 
@@ -35,12 +49,12 @@
 					var str = "<div class='bubblewrap watson'><div class='bubble'><p class='label'>";
 					    str += data;
 					    str += "</p></div></div>";
-						message.value = "";
-						conversation.innerHTML += str;
-						conversation.scrollTop = conversation.scrollHeight;
-						focus_message();
+					conversation.innerHTML += str;
+					conversation.scrollTop = conversation.scrollHeight;
+					focus_message();
 				}
 			})
+			document.getElementById('send_btn').disabled = false;
 		}
 
 		function clearall() {
@@ -50,7 +64,9 @@
 		}
 
 		function enter() {
-			if(event.keyCode == 13) sendmessage();
+			if(event.keyCode == 13 && 
+			!document.getElementById('send_btn').disabled)
+				sendmessage();
 		}
 
 		function focus_message() {
