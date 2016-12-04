@@ -41,7 +41,30 @@
    }
    return null;
   }
-  
+  function gameNum($name) {
+   global $region;
+   $id = getSummonerID($name);
+   if($id == null) {
+      return null;
+   }
+   $url = "https://$region.api.pvp.net/api/lol/$region/v1.3/stats/by-summoner/$id/summary?season=SEASON2016&api_key=";
+   
+   $arr = callAPI($url);
+   $win;
+   $lose;	
+   foreach($arr["playerStatSummaries"] as $key => $value) {
+     if($value["playerStatSummaryType"] === "RankedSolo5x5") {
+       $win = $value["wins"];
+       $lose = $value["losses"];
+       if($win === 0 && $lose === 0) {
+          return 0;
+       }
+	   $total = $win + $lose;
+	   return $total;
+	 }
+   }   
+   return null;
+ }
   function rotation_champ() {
      global $region;
      $url = "https://$region.api.pvp.net/api/lol/$region/v1.2/champion?api_key=";
