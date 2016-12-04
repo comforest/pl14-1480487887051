@@ -129,15 +129,14 @@
             }
             echo "</table>";
             break;
-        case 'numberofChampions':
-            $result = getChampionList();
-            echo 'The number of Champions is '.count($result);
-            break;
         case 'lol':
             echo whatLoL();
             break;
         case 'rankingTop':
             echo "The best player is ".rankingTop();
+            break;
+        case 'itemList':
+            print_r(getItemList());
             break;
 
 	 };
