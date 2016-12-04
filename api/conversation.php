@@ -88,7 +88,7 @@
                 $name = $arr["output"]["param"][1];
                 $tier = getSummonerTier($name);
                 echo "$name's Tier is $tier<br>";
-                echo "<img src = '/images/tier/".$tier.".png'>";
+                echo "<img src = '../images/tier/".$tier.".png'>";
             }
 	 		break;
         case 'skin':
@@ -161,7 +161,7 @@
             echo whatLoL();
             break;
         case 'rankingTop':
-            echo "The best player is ".rankingTop();
+            echo "The best player is ". rankingTop();
             break;
         case 'itemList':
             $arr = getItemList();
