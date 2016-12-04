@@ -60,27 +60,14 @@
         return $data["answer_units"][2]["content"][0]["text"];
     }
 
-    function SummonersRift() {
-        $data = json_decode(conversion("https://en.wikipedia.org/wiki/League_of_Legends"), true);
+    define("SummonersRift", 4);
+    define("TwistedTreeline", 5);
+    define("HowlingAbyss", 6);
+    define("CrystalScar", 7);
 
-        return $data["answer_units"][4]["content"][0]["text"];
+    function Map($id) {
+        $data = json_decode(conversion("https://en.wikipedia.org/wiki/League_of_Legends"), true);
+        return $data["answer_units"][$id]["content"][0]["text"];
     }
 
-    function TwistedTreeline() {
-        $data = json_decode(conversion("https://en.wikipedia.org/wiki/League_of_Legends"), true);
-
-        return $data["answer_units"][5]["content"][0]["text"];
-    }
-
-    function HowlingAbyss() {
-        $data = json_decode(conversion("https://en.wikipedia.org/wiki/League_of_Legends"), true);
-
-        return $data["answer_units"][6]["content"][0]["text"];
-    }
-
-    function CrystalScar() {
-        $data = json_decode(conversion("https://en.wikipedia.org/wiki/League_of_Legends"), true);
-
-        return $data["answer_units"][7]["content"][0]["text"];
-    }
 ?>

@@ -176,6 +176,25 @@
             echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png ' height='70px'><br>";
             echo $arr["description"];
             break;
+        case 'map':
+            $param = $arr["output"]["param"][0];
+            $id;
+            switch ($param) {
+                case 'Crystal Scar':
+                    $id = CrystalScar;
+                    break;
+                case 'Howling Abyss':
+                    $id = HowlingAbyss;
+                    break;
+                case "Summoner's Rift":
+                    $id = SummonersRift;
+                    break;
+                case 'Twisted Treeline':
+                    $id = TwistedTreeline;
+                    break;
+            }
+            echo Map($id);
+            break;
 	 };
 ?>
 </body>
