@@ -4,7 +4,7 @@
    <meta charset = "utf-8">
    <title>Welcome!</title>
    <link rel="stylesheet" type="text/css" href="style.css">
-   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
    <script type="text/javascript">
       function size() {
          $('#wrapper').css('width', $(window).width()-10);
