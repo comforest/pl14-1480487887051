@@ -44,6 +44,16 @@
         
     }
 
+    function printconv($url) {
+        $temp = json_decode(conversion($url), true);
+
+        for($i=0; $i<count($temp["answer_units"]); $i++) {
+            echo $i. '<br>';
+            echo $temp["answer_units"][$i]["title"]. '<br>';
+            echo $temp["answer_units"][$i]["content"][0]["text"]. '<br><br>';
+        }
+    }
+
     function whatLoL() {
         $data = json_decode(conversion("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/"), true);
 
