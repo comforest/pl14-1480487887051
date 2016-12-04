@@ -197,7 +197,7 @@
             $param = $arr["output"]["param"][0];
             $arr = itemInfo($param);
             echo $param." Information<br>";
-            echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png ' height='70px'><br>";
+            echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png' height='70px'><br>";
             echo $arr["description"];
             break;
         case 'map': //맵에 관한 설명
@@ -217,6 +217,7 @@
                     $id = TwistedTreeline;
                     break;
             }
+            echo "<img src = '../images/maps/$id.jpg' height='100px'><br>";
             echo Map($id);
             break;
 	 };

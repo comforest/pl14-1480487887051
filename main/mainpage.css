@@ -31,7 +31,7 @@ body {
 	float: left;
 	font-size: 20px;
 	font-weight: bold;
-	color: #000000;
+	color: #ffffff;
 	display: none;
 }
 
@@ -52,10 +52,6 @@ body {
 	background-image: url('../images/teemo.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
-}
-
-#container #sidebar #example {
-	color: #ffffff;
 }
 
 /* speech bubble */

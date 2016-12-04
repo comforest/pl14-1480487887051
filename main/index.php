@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="mainpage.css" />
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
+		//resize divs by using jquery
 		function size() {
 			$('#wrapper').css('width', $(window).width()-10);
 			$('#wrapper').css('height', $(window).height()-10);
@@ -28,9 +29,9 @@
 			document.getElementById('send_btn').disabled = bool;
 			document.getElementById('message').disabled = bool;
 			if(bool)
-				$('#loading').css('display', 'none');
-			else
 				$('#loading').css('display', 'block');
+			else
+				$('#loading').css('display', 'none');
 		}
 
 		function sendmessage() {
