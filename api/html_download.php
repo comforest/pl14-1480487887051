@@ -1,6 +1,6 @@
 <?php
 	$ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $_POST['inputURL']);
+    curl_setopt($ch, CURLOPT_URL, $_POST['input']);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
