@@ -54,6 +54,10 @@ body {
 	background-size: cover;
 }
 
+#container #sidebar #example {
+	color: #ffffff;
+}
+
 /* speech bubble */
 .bubblewrap {
 	text-align: right;
@@ -68,5 +72,4 @@ body {
 
 .watson {
 	text-align: left;
-	color : yellow;
 }

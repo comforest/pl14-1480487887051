@@ -84,12 +84,11 @@
 	 	case 'summoner':
             $param = $arr["output"]["param"][0];
             $name = $arr["output"]["param"][1];
-            if($param == "tier"){
-                $tier = getSummonerTier($name);
-                if($tier == null){  // 플레이어의 랭크게임 티어(등급)
-                    echo "Can't find summoner whose name is $name.";
+            if($param == "tier"){  // 플레이어의 랭크게임 티어(등급)
+                if($tier == null){ //플레이어가 없을때
+                    echo "Summoner does not exist.";
                     return;
-                } 
+                }
                 echo "$name's Tier is $tier<br>";
                 echo "<img src = '../images/tier/".$tier.".png'>";
             }else if($param == "gamenumber"){  // 플레이어가 플레이 한 랭크게임수
