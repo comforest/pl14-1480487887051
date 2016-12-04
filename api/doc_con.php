@@ -38,18 +38,28 @@
             });
             return arr;
         }
+        function printAll(url) {
+            var arr = getconversion(url);
+            $(document).ajaxStop(function() {
+                for(var i=0; i<arr.title.length; i++) {
+                    document.write(arr.title[i]+'<br>');
+                    document.write(arr.text[i]+'<br><br>');
+                }
+            });
+        }
+
         function Question(url, num) {
             var arr = getconversion(url);
             $(document).ajaxStop(function() {
                 document.write(arr.text[num]+'<br><br>');
             });
         }
-
         function WhatisLOL() {Question("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/", 2);}
     </script>
 </head>
 <body>
-<script type="text/javascript">
+<div id="content"></div>
+<script>
     WhatisLOL();
 </script>
 </body>
