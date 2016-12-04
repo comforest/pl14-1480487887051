@@ -158,9 +158,11 @@
 
             break;
         case 'itemInfo':
-            $param = $arr["output"]["param"][0];
+            echo $param = $arr["output"]["param"][0];
             $arr = itemInfo($param);
-            print_r($arr);
+            echo $param." Information<br>";
+            echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png ' height='70px'><br>";
+            echo $arr["description"];
             break;
 	 };
 

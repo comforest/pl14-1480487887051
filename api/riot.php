@@ -187,9 +187,8 @@
    $arr = callAPI($url);
    
    foreach($arr["data"] as $k => $v) {
-      if($v["name"] == $name) {
-         return $v["id"];
-      }
+      if(isset($v["name"]) && $v["name"] == $name)
+        return $v["id"];
    }   
   }
   function rankingTop() {
