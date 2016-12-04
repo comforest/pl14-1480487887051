@@ -5,33 +5,29 @@
     $userName = "c22a9e67-2f46-4dda-9286-b21862276e30";
     $userPwd = "05MXPpfi8Gs2";
 
+
+    //Parameter for conversation API
     if(!isset($_SESSION["dialog"])) $context = array("system"=>array("dialog_stack"=>array("root")));
     else $context = $_SESSION["dialog"];
     $data = array("input" => array("text"=>"$_POST[input]"), "context"=>$context);
     $data_string = json_encode($data);
 
-    // create curl resource 
+
+    //curl for conversation API
     $ch = curl_init(); 
-
-    // set url 
     curl_setopt($ch, CURLOPT_URL, "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/$workspace_id/message?version=2016-09-20"); 
-
-    //return the transfer as a string 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
     curl_setopt($ch, CURLOPT_USERPWD, "$userName:$userPwd");
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
         'Content-Length: ' . strlen($data_string))
     );
        
-
-    // $output contains the output string 
+    //conversation result
     $out = curl_exec($ch);
-    
     $arr = json_decode($out,true);
 
     curl_close($ch);
@@ -39,18 +35,21 @@
     $_SESSION["dialog"] = $arr["context"];
 
 
+    //RIOT API File
     include $_SERVER["DOCUMENT_ROOT"]."/api/riot.php";
+    //Document conversion API file
     include $_SERVER["DOCUMENT_ROOT"]."/api/doc_con.php";
 
-    if(isset($arr["output"]["data"])){
+
+    if(isset($arr["output"]["data"])){ //conversation API에서 특정 요청이 있는 경우
         $data = $arr["output"]["data"];
     }else{
-        echo $arr["output"]["text"][0];
+        echo $arr["output"]["text"][0]; //conversation API에서 정해진 응답을 그대로 출력하는 경우
         return;
     }
 
 	switch ($data) {
-	 	case 'getRotationChampion':
+	 	case 'getRotationChampion': //로테이션 챔피언 검색
 	 		$result = rotation_champ();
             echo 'The Rotation Champions are ';
             echo "<table>";
@@ -69,14 +68,14 @@
             }
             echo "</table>";
 	 		break;
-	 	case 'includeRotationChampion':
+	 	case 'includeRotationChampion': //해당 쳄피언 로테이션 챔피언 인지 확인
             $name = $arr["output"]["param"][0];
             if(b_rotation_champ($name))
                 echo "Yes";
             else
                 echo "No";
 	 		break;
-        case 'rateSummoner':
+        case 'rateSummoner': // 플레이어의 승률
             $param = $arr["output"]["param"];
             if($param[0] == "win"){
                 echo "$param[1]'s win rate is ".win_rate($param[1]).'%';
@@ -84,14 +83,24 @@
             break;
 	 	case 'summoner':
             $param = $arr["output"]["param"][0];
-            if($param == "tier"){
-                $name = $arr["output"]["param"][1];
-                $tier = getSummonerTier($name);
+            $name = $arr["output"]["param"][1];
+            if($param == "tier"){  // 플레이어의 랭크게임 티어(등급)
+                if($tier == null){ //플레이어가 없을때
+                    echo "Summoner does not exist.";
+                    return;
+                }
                 echo "$name's Tier is $tier<br>";
                 echo "<img src = '../images/tier/".$tier.".png'>";
+            }else if($param == "gamenumber"){  // 플레이어가 플레이 한 랭크게임수
+                $num = gameNum($name);
+                if($num == null){
+                    echo "Can't find summoner whose name is $name.";
+                    return;
+                } 
+                echo "$name played total $num games";
             }
 	 		break;
-        case 'skin':
+        case 'skin': //챔피언 스킨
             $param = $arr["output"]["param"][0];
             $result = championSkin($param);
             echo "The Champion's skins are<br>";
@@ -111,7 +120,7 @@
             }
             echo "</table>";
             break;
-        case 'skill':
+        case 'skill': //챔피언 스킬
             $param = $arr["output"]["param"][0];
             echo $param;
             $name = championSkillName($param);
@@ -124,7 +133,7 @@
             }
             echo "If Do you want more information about skill, write Q,W,E,R or Passive";
             break;
-        case 'skillInfo':
+        case 'skillInfo': //챔피언 스킬 상세 목록
             $param = $arr["output"]["param"][0];
             $skill = $arr["output"]["param"][1];
             $desc = championSkillDescrip($param);
@@ -138,7 +147,7 @@
             echo "$desc[$skill]";
             
             break;
-        case 'championList':
+        case 'championList': //전체 챔피언 목록
             $result = getChampionList();
             echo 'The Champions are ';
             echo "<table>";
@@ -157,13 +166,13 @@
             }
             echo "</table>";
             break;
-        case 'lol':
+        case 'lol': //LoL에 대해서
             echo whatLoL();
             break;
-        case 'rankingTop':
+        case 'rankingTop': //1위 플레이어 구하기
             echo "The best player is ". rankingTop();
             break;
-        case 'itemList':
+        case 'itemList': //아이템 목록
             $arr = getItemList();
             echo "Item's list is";
             echo "<table>";
@@ -184,14 +193,14 @@
 
 
             break;
-        case 'itemInfo':
+        case 'itemInfo': //특정 아이템 상세정보
             $param = $arr["output"]["param"][0];
             $arr = itemInfo($param);
             echo $param." Information<br>";
-            echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png ' height='70px'><br>";
+            echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/item/$arr[id].png' height='70px'><br>";
             echo $arr["description"];
             break;
-        case 'map':
+        case 'map': //맵에 관한 설명
             $param = $arr["output"]["param"][0];
             $id;
             switch ($param) {
@@ -208,6 +217,7 @@
                     $id = TwistedTreeline;
                     break;
             }
+            echo "<img src = '../images/maps/$id.jpg' height='100px'><br>";
             echo Map($id);
             break;
 	 };

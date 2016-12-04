@@ -31,7 +31,7 @@ body {
 	float: left;
 	font-size: 20px;
 	font-weight: bold;
-	color: #000000;
+	color: #ffffff;
 	display: none;
 }
 
@@ -68,5 +68,4 @@ body {
 
 .watson {
 	text-align: left;
-	color : yellow;
 }

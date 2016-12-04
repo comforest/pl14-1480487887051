@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="mainpage.css" />
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script type="text/javascript">
+		//resize divs by using jquery
 		function size() {
 			$('#wrapper').css('width', $(window).width()-10);
 			$('#wrapper').css('height', $(window).height()-10);
@@ -24,15 +25,22 @@
 			focus_message();
 		});
 
+		function message_disable(bool) {
+			document.getElementById('send_btn').disabled = bool;
+			document.getElementById('message').disabled = bool;
+			if(bool)
+				$('#loading').css('display', 'block');
+			else
+				$('#loading').css('display', 'none');
+		}
+
 		function sendmessage() {
-			document.getElementById('send_btn').disabled = true;
-			$('#loading').css('display', 'block');
+			message_disable(true);
 			var conversation = document.getElementById('conversation');
 			var message = document.getElementById('message');
 			if(message.value.replace(/ /g,"") == "") {
+				message_disable(false);
 				focus_message();
-				$('#loading').css('display', 'none');
-				document.getElementById('send_btn').disabled = false;
 				return;
 			}
 
@@ -58,11 +66,10 @@
 					    str += "</p></div></div>";
 					conversation.innerHTML += str;
 					conversation.scrollTop = conversation.scrollHeight;
-					focus_message();
 				}
 			}).done(function() {
-				$('#loading').css('display', 'none');
-				document.getElementById('send_btn').disabled = false;
+				message_disable(false);
+				focus_message();
 			});
 		}
 
