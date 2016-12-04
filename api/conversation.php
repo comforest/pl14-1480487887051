@@ -124,6 +124,20 @@
             }
             echo "If Do you want more information about skill, write Q,W,E,R or Passive";
             break;
+        case 'skillInfo':
+            $param = $arr["output"]["param"][0];
+            $skill = $arr["output"]["param"][1];
+            $desc = championSkillDescrip($param);
+            $name = championSkillName($param);
+            $img = championSkillImage($param);
+            echo "The Champion's $skill skill is<br>";
+            
+            echo "<img src = '$img[$skill]' height='30px'> ";
+            echo "$skill - $name[$skill]<br>";
+            echo "<br>";
+            echo "$desc[$skill]";
+            
+            break;
         case 'championList':
             $result = getChampionList();
             echo 'The Champions are ';
