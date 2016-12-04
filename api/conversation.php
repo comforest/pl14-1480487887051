@@ -130,10 +130,6 @@
             }
             echo "</table>";
             break;
-        case 'numberofChampions':
-            $result = getChampionList();
-            echo 'The number of Champions is '.count($result);
-            break;
         case 'lol':
             // whatLoL();
             break;
