@@ -19,13 +19,28 @@ body {
 	color: #ffffff;
 	padding-left: 10px;
 }
+#header #title {
+	float: left;
+	font-size: 40px;
+	font-weight: bold;
+}
+#header #loading {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	float: left;
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000;
+	display: none;
+}
+
 #container #content {
 	width: 100%;
 	float: left;
 }
 #container #content #conversation {
 	overflow-y: scroll;
-	background-size: auto 460px;
 }
 #container #content #textinput {
 	height: 30px;
@@ -33,7 +48,6 @@ body {
 	background: #000000;
 }
 #container #sidebar {
-	width: 200px;
 	float: right;
 	background-image: url('../images/teemo.jpg');
 	background-repeat: no-repeat;

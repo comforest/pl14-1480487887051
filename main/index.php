@@ -19,16 +19,19 @@
 		}
 		$(document).ready(function() {
 			size();
+			size();
 			$(window).resize(function() {size();});
 			focus_message();
 		});
 
 		function sendmessage() {
 			document.getElementById('send_btn').disabled = true;
+			$('#loading').css('display', 'block');
 			var conversation = document.getElementById('conversation');
 			var message = document.getElementById('message');
 			if(message.value.replace(/ /g,"") == "") {
 				focus_message();
+				$('#loading').css('display', 'none');
 				document.getElementById('send_btn').disabled = false;
 				return;
 			}
@@ -38,11 +41,9 @@
 		    	str += "</p></div></div>";
 			conversation.innerHTML += str;
 			conversation.scrollTop = conversation.scrollHeight;
-<<<<<<< HEAD
+
 			var val = message.value;
 			message.value = "";
-=======
->>>>>>> 848d420a79eeecee8f43df8d4a0b41dd98c9c424
 			focus_message();
 			//TODO Ajax 처리
 
@@ -59,7 +60,8 @@
 					focus_message();
 				}
 			}).done(function() {
-				document.getElementById('send_btn').disabled = false
+				$('#loading').css('display', 'none');
+				document.getElementById('send_btn').disabled = false;
 			});
 			message.value = "";
 		}
@@ -83,7 +85,7 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div id="header"><h1>LOL Searcher</h1></div>
+		<div id="header"><div id="title">LOL Searcher</div><div id="loading">loading...</div></div>
 		<div id="container">
 			<div id="content">
 				<div id="conversation"></div>		
