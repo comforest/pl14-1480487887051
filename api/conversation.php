@@ -40,6 +40,7 @@
 
 
     include $_SERVER["DOCUMENT_ROOT"]."/api/riot.php";
+    include $_SERVER["DOCUMENT_ROOT"]."/api/doc_con.php";
 
     if(isset($arr["output"]["data"])){
         $data = $arr["output"]["data"];
@@ -108,8 +109,7 @@
                 if($i == 0) echo "<tr>";
                 echo "<td style='width:100px'>";
                 echo "$value<br>";
-                echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/$value.png 
-' height='70px'><br>";
+                echo "<img src = 'http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/$value.png ' height='70px'><br>";
                 echo "</td>";
                 ++$i;
                 if($i == 11){
@@ -121,7 +121,13 @@
             }
             echo "</table>";
             break;
-
+        case 'numberofChampions':
+            $result = getChampionList();
+            echo 'The number of Champions is '.count($result);
+            break;
+        case 'lol':
+            // whatLoL();
+            break;
         case 'rankingTop':
             echo "The best player is ".rankingTop();
             break;

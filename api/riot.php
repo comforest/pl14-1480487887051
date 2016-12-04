@@ -1,5 +1,7 @@
 <?php 
   $region = "kr";
+  $language= "na";
+
 
   function callAPI($url){
    global $region;
@@ -70,7 +72,7 @@
      global $region;
 
     $id = getChampionID($name);
-     $url = "https://kr.api.pvp.net/api/lol/kr/v1.2/champion/$id?api_key=";
+     $url = "https://$region.api.pvp.net/api/lol/$region/v1.2/champion/$id?api_key=";
 
      $arr = callAPI($url);
 
@@ -91,7 +93,7 @@
    function getSummonerTier($name){
       global $region;
       $id = getSummonerID($name);
-      $url = "https://$region.api.pvp.net/api/lol/kr/v2.5/league/by-summoner/$id?api_key=";
+      $url = "https://$region.api.pvp.net/api/lol/$region/v2.5/league/by-summoner/$id?api_key=";
       $data = callAPI($url);
       if(isset($data[$id]))
         return strtolower($data[$id][0]["tier"]);
@@ -181,7 +183,8 @@
   }
   
   function getItemID($name) {
-   $url = "https://global.api.pvp.net/api/lol/static-data/na/v1.2/item?api_key=";
+  	global $language;
+   $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/item?api_key=";
    $arr = callAPI($url);
    
    foreach($arr["data"] as $k => $v) {
@@ -190,7 +193,7 @@
       }
    }   
   }
-  function rankTop() {
+  function rankingTop() {
    global $region;
    $url = "https://$region.api.pvp.net/api/lol/$region/v2.5/league/challenger?type=RANKED_SOLO_5x5&api_key=";
    $arr = callAPI($url);
@@ -205,13 +208,17 @@
       }
    }
    return $no1Name;
+
   }
   function itemInfo($name) {
+  global $language;
    $id = getItemID($name);
-   $url = "https://global.api.pvp.net/api/lol/static-data/na/v1.2/item/$id?itemData=all&api_key=";
+   $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/item/$id?itemListData=sanitizedDescription&api_key=";
    
    $arr = callAPI($url);
    
    return $arr;   
   }
+
+  print_r(itemInfo("Warden's Mail"));
 ?>
