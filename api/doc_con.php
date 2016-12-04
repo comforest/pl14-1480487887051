@@ -1,6 +1,5 @@
 <?php
-
-    function converstion($url){
+    function conversion($url){
         downloadHTML($url);
         $url = "https://gateway.watsonplatform.net/document-conversion/api/v1/convert_document?version=2015-12-15";
         $userName = "8108ea35-b6da-41f9-b866-9256512e3b5c";
@@ -43,5 +42,9 @@
         flock($fp, LOCK_UN);
         fclose($fp);
         
+    }
+
+    function whatLoL() {
+        $arr = conversion("http://gameinfo.na.leagueoflegends.com/en/game-info/get-started/what-is-lol/");
     }
 ?>

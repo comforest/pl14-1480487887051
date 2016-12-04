@@ -38,7 +38,6 @@
 
     $_SESSION["dialog"] = $arr["context"];
 
-
     include $_SERVER["DOCUMENT_ROOT"]."/api/riot.php";
     include $_SERVER["DOCUMENT_ROOT"]."/api/doc_con.php";
 

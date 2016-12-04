@@ -11,10 +11,10 @@
 			$('#wrapper').css('height', $(window).height()-10);
 			$('#conversation').css('height', $(window).height()-100);
 			$('#sidebar').css('height', $(window).height()-60);
-			$('#sidebar').css('width', $('#sidebar').height()*0.5);
+			$('#sidebar').css('width', $('#sidebar').height()*0.4);
 			$('#conversation').css('margin-right', $('#sidebar').width());
 			$('#textinput').css('margin-right', $('#sidebar').width());
-			$('#content').css('margin-right', -$('#sidebar').width());
+			$('#content').css('margin-right', -($('#sidebar').width()+50));
 			$('#message').css('width', $('#textinput').width()-100);
 		}
 		$(document).ready(function() {
@@ -29,6 +29,7 @@
 			var message = document.getElementById('message');
 			if(message.value.replace(/ /g,"") == "") {
 				focus_message();
+				document.getElementById('send_btn').disabled = false;
 				return;
 			}
 
@@ -42,10 +43,10 @@
 			//TODO Ajax 처리
 
 			$.ajax({
-				url:"/api/conversation.php",
+				url:"../api/conversation.php",
 				type:"post",
 				data:{input:message.value},
-				success:function(data){
+				success: function(data){
 					var str = "<div class='bubblewrap watson'><div class='bubble'><p class='label'>";
 					    str += data;
 					    str += "</p></div></div>";
@@ -53,8 +54,9 @@
 					conversation.scrollTop = conversation.scrollHeight;
 					focus_message();
 				}
-			})
-			document.getElementById('send_btn').disabled = false;
+			}).done(function() {
+				document.getElementById('send_btn').disabled = false
+			});
 		}
 
 		function clearall() {
