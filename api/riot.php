@@ -187,9 +187,8 @@
    $arr = callAPI($url);
    
    foreach($arr["data"] as $k => $v) {
-      if($v["name"] == $name) {
-         return $v["id"];
-      }
+      if(isset($v["name"]) && $v["name"] == $name)
+        return $v["id"];
    }   
   }
   function rankingTop() {
@@ -223,13 +222,12 @@
    $url = "https://global.api.pvp.net/api/lol/static-data/$language/v1.2/item?itemListData=hideFromAll&api_key=";
    $arr = callAPI($url);
    $result = array();
-   print_r($arr["data"]);
     foreach ($arr["data"] as $key => $value) {
-      $result[$key] = $value["name"];
+      if(isset($value["name"]))
+        $result[$key] = $value["name"];
     }
    return $result;   
   }
 
-  print_r(getItemList());
 
 ?>
