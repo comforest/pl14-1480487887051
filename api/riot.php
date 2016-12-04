@@ -219,6 +219,4 @@
    
    return $arr;   
   }
-
-  print_r(itemInfo("Warden's Mail"));
 ?>
