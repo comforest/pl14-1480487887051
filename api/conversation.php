@@ -122,6 +122,7 @@
                 echo "$key - $value<br>";
                 echo "<br>";
             }
+            echo "If Do you want more information about skill, write Q,W,E,R or Passive";
             break;
         case 'championList':
             $result = getChampionList();
