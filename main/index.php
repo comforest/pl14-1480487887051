@@ -38,7 +38,6 @@
 		    	str += "</p></div></div>";
 			conversation.innerHTML += str;
 			conversation.scrollTop = conversation.scrollHeight;
-			message.value = "";
 			focus_message();
 			//TODO Ajax 처리
 
@@ -57,6 +56,7 @@
 			}).done(function() {
 				document.getElementById('send_btn').disabled = false
 			});
+			message.value = "";
 		}
 
 		function clearall() {
